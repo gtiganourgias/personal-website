@@ -16,7 +16,7 @@ I am **George Tiganourgias**, a 27-year-old **SAP Development Leader** from Gree
 ## 🌐 Website
 
 You can visit my live website here:  
-[**George Tiganourgias Portfolio**](https://gtiganourgias.github.io/personal-website)
+[**gtiganourgias.github.io/personal-website**](https://gtiganourgias.github.io/personal-website)
 
 ---
 
