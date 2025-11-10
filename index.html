@@ -132,9 +132,35 @@
 
   /* -----------------------
      Sections style
-     ----------------------- */
+     -----------------------
   section.block{margin:2rem auto; padding:2rem; border-radius:14px; background:var(--card); box-shadow:0 10px 30px rgba(11,18,32,0.04); border:1px solid rgba(10,117,194,0.03)}
-  section.block h2{margin-top:0; color:var(--sap-dark)}
+  section.block h2{margin-top:0; color:var(--sap-dark)} 
+  */
+  
+  /* Sections */
+section {
+  width: 100%;
+  margin: 4rem auto;
+  padding: 4rem 8vw; /* more spacing for large screens */
+  border-radius: 0;
+  background: rgba(255,255,255,0.6);
+  backdrop-filter: blur(10px);
+  box-shadow: 0 8px 25px rgba(0,0,0,0.08);
+}
+
+section h2 {
+  text-align: center;
+  font-size: 2rem;
+  margin-bottom: 2rem;
+  color: var(--sap-dark);
+}
+
+/* Make About text narrower for readability */
+#about p {
+  max-width: 800px;
+  margin: auto;
+  line-height: 1.6;
+}
 
   /* Skills */
   .skills-grid{display:grid; grid-template-columns:repeat(auto-fit, minmax(220px, 1fr)); gap:1rem}
@@ -441,3 +467,4 @@ function contactSubmit(e){
 </script>
 </body>
 </html>
+
