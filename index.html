@@ -1,301 +1,443 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>George Tiganourgias | SAP Fiori Architect</title>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
-  <style>
-    /* Root Palette */
-    :root {
-      --sap-blue: #0FAAFF;
-      --sap-dark: #0A75C2;
-      --sap-light: #E6F4FF;
-      --sap-orange: #FF8C00;
-      --text: #222;
-      --bg: #F7FAFC;
-    }
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>George Tiganourgias — SAP Fiori Architect</title>
+<meta name="description" content="George Tiganourgias — SAP Development Lead & Fiori Architect. Portfolio, projects and contact." />
+<!-- Open Graph -->
+<meta property="og:title" content="George Tiganourgias — SAP Fiori Architect" />
+<meta property="og:description" content="SAP Development Lead & Fiori Architect — portfolio and projects." />
+<meta property="og:type" content="website" />
+<meta property="og:image" content="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='1200' height='630'%3E%3Crect width='100%25' height='100%25' fill='%230FAAFF'/%3E%3Ctext x='50%25' y='50%25' dominant-baseline='middle' text-anchor='middle' font-family='Inter,Arial' font-size='46' fill='white'%3EGeorge Tiganourgias%3C/text%3E%3C/svg%3E" />
+<meta name="theme-color" content="#0FAAFF" />
 
-    body {
-      font-family: 'Inter', sans-serif;
-      background: var(--bg);
-      color: var(--text);
-      margin: 0;
-      transition: background 0.3s, color 0.3s;
-    }
+<!-- Inline SAP-like favicon (data URI SVG) -->
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 48 48'%3E%3Crect width='100%25' height='100%25' fill='%230FAAFF' rx='8'/%3E%3Ccircle cx='14' cy='24' r='6' fill='%23fff'/%3E%3Crect x='24' y='18' width='10' height='12' rx='2' fill='%23fff'/%3E%3C/svg%3E">
 
-    body.dark {
-      background: #0A1724;
-      color: #E6F4FF;
-    }
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
+<style>
+  /* -----------------------
+     Design tokens (SAP-inspired)
+     ----------------------- */
+  :root{
+    --sap-blue:#0FAAFF;
+    --sap-dark:#0A75C2;
+    --sap-light:#E6F4FF;
+    --sap-orange:#FF8C00;
+    --bg:#F4F8FB;
+    --card:#ffffff;
+    --muted:#667085;
+    --glass: rgba(255,255,255,0.65);
+    --radius:14px;
+    --gap:1.25rem;
+    --max-width:1100px;
+    --motion-fast:180ms;
+    --motion-medium:300ms;
+  }
+  @media (prefers-reduced-motion: reduce){
+    :root{ --motion-fast:1ms; --motion-medium:1ms; }
+  }
 
-    /* Header */
-    header {
-      position: sticky;
-      top: 0;
-      backdrop-filter: blur(15px);
-      background: rgba(255,255,255,0.7);
-      border-bottom: 1px solid rgba(15,170,255,0.2);
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 1rem 2rem;
-      z-index: 100;
-    }
-    header nav a {
-      margin: 0 1rem;
-      font-weight: 600;
-      color: var(--sap-dark);
-    }
-    header nav a:hover {
-      color: var(--sap-blue);
-    }
-    .dark-toggle {
-      background: var(--sap-blue);
-      color: #fff;
-      border: none;
-      padding: 0.5rem 1rem;
-      border-radius: 8px;
-      cursor: pointer;
-      font-weight: 600;
-    }
+  /* -----------------------
+     Page basics
+     ----------------------- */
+  *{box-sizing:border-box}
+  html,body{height:100%}
+  body{
+    margin:0;
+    font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,"Helvetica Neue",Arial;
+    -webkit-font-smoothing:antialiased;
+    background: linear-gradient(180deg,var(--bg), #fff 200px);
+    color:#0b1220;
+    line-height:1.5;
+    -webkit-tap-highlight-color:transparent;
+  }
+  a{color:var(--sap-dark); text-decoration:none}
+  a:focus{outline:3px solid rgba(15,170,255,0.18); outline-offset:3px; border-radius:6px}
 
-    /* Hero */
-    .hero {
-      height: 90vh;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      background: linear-gradient(135deg, var(--sap-blue), var(--sap-dark));
-      color: #fff;
-      text-align: center;
-    }
-    .hero h1 {
-      font-size: 3rem;
-      font-weight: 700;
-      background: linear-gradient(90deg, #fff, var(--sap-light), var(--sap-orange));
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      animation: gradientMove 6s infinite alternate ease-in-out;
-    }
-    @keyframes gradientMove {
-      0% { background-position: 0% 50%; }
-      100% { background-position: 100% 50%; }
-    }
-    .hero p {
-      font-size: 1.25rem;
-      margin: 1rem 0;
-    }
-    .hero a {
-      background: var(--sap-orange);
-      color: #fff;
-      padding: 0.8rem 1.6rem;
-      border-radius: 8px;
-      font-weight: 600;
-      transition: 0.3s;
-    }
-    .hero a:hover {
-      background: #e67300;
-      transform: scale(1.05);
-    }
+  .container{max-width:var(--max-width); margin:0 auto; padding:2rem;}
 
-    /* Sections */
-    section {
-      max-width: 1000px;
-      margin: 4rem auto;
-      padding: 2rem;
-      border-radius: 16px;
-      background: rgba(255,255,255,0.6);
-      backdrop-filter: blur(10px);
-      box-shadow: 0 8px 25px rgba(0,0,0,0.08);
-    }
-    section h2 {
-      text-align: center;
-      font-size: 2rem;
-      margin-bottom: 2rem;
-      color: var(--sap-dark);
-    }
+  /* -----------------------
+     Header / Nav
+     ----------------------- */
+  header{
+    position:sticky; top:12px; z-index:60;
+    display:flex; align-items:center; justify-content:space-between;
+    margin:0 auto; max-width:var(--max-width); padding:0 1rem;
+  }
+  .nav-inner{
+    width:100%; display:flex; gap:1rem; align-items:center; justify-content:space-between;
+    background:var(--glass); padding:0.5rem 1rem; border-radius:12px; backdrop-filter: blur(6px);
+    box-shadow:0 6px 18px rgba(11,18,32,0.06);
+    border:1px solid rgba(10,117,194,0.06);
+  }
+  .brand{display:flex; gap:0.75rem; align-items:center}
+  .brand strong{font-weight:800; color:var(--sap-dark)}
+  nav a{font-weight:600; color:var(--sap-dark); padding:0.4rem 0.6rem; border-radius:8px; font-size:0.95rem}
+  nav a:hover{background: rgba(15,170,255,0.06); color:var(--sap-blue);}
+  .actions{display:flex; gap:0.5rem; align-items:center}
+  .btn{
+    display:inline-flex; align-items:center; gap:0.5rem;
+    background:var(--sap-blue); color:white; border:none; padding:0.5rem 0.9rem;
+    border-radius:10px; font-weight:700; cursor:pointer; font-size:0.95rem;
+    box-shadow:0 6px 18px rgba(15,170,255,0.12);
+    transition:transform var(--motion-fast) ease, box-shadow var(--motion-fast);
+  }
+  .btn.secondary{ background:transparent; color:var(--sap-dark); border:1px solid rgba(10,117,194,0.09); box-shadow:none; }
+  .btn:active{transform:translateY(1px)}
+  .icon { width:18px; height:18px; display:inline-block }
 
-    /* Skills */
-    .skills {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-      gap: 2rem;
-    }
-    .skill {
-      background: rgba(255,255,255,0.75);
-      border: 1px solid rgba(15,170,255,0.2);
-      border-radius: 12px;
-      padding: 1.5rem;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.05);
-    }
-    .skill p {
-      display: flex;
-      justify-content: space-between;
-      font-weight: 600;
-      margin-bottom: 0.5rem;
-    }
-    .skill-bar {
-      height: 10px;
-      background: #e6f0fa;
-      border-radius: 5px;
-      overflow: hidden;
-    }
-    .skill-fill {
-      width: 0%;
-      height: 100%;
-      border-radius: 5px;
-      background: linear-gradient(90deg, var(--sap-blue), var(--sap-dark), var(--sap-orange));
-      background-size: 300% 100%;
-      animation: gradientMove 3s infinite alternate;
-      transition: width 1.5s ease;
-    }
+  /* -----------------------
+     Hero (split layout)
+     ----------------------- */
+  .hero{
+    display:grid; grid-template-columns: 1fr 420px; gap:2rem; align-items:center;
+    margin:2.2rem auto; max-width:var(--max-width); padding:2.2rem;
+  }
+  .hero-left{
+    padding:2rem; border-radius:18px; background:linear-gradient(180deg, rgba(255,255,255,0.8), rgba(255,255,255,0.6));
+    box-shadow: 0 24px 60px rgba(10,20,40,0.06); border:1px solid rgba(10,117,194,0.04);
+  }
+  h1{font-size:2.1rem; margin:0 0 0.5rem 0; letter-spacing:-0.02em}
+  .eyebrow{display:inline-block; background:rgba(15,170,255,0.08); color:var(--sap-dark); padding:6px 10px; border-radius:999px; font-weight:700; margin-bottom:0.8rem; font-size:0.85rem}
+  .hero p.lead{font-size:1.02rem; color: #213041; margin:0 0 1.25rem; max-width:70ch}
+  .cta-row{display:flex; gap:0.75rem; align-items:center}
+  .cta-row .btn{font-size:0.95rem}
+  .mini{
+    display:flex; gap:0.9rem; margin-top:1.5rem; flex-wrap:wrap;
+  }
+  .stat{
+    background:linear-gradient(180deg,#fff, #fbfdff);
+    padding:0.75rem 1rem; border-radius:12px; border:1px solid rgba(10,117,194,0.04);
+    min-width:120px; text-align:center;
+  }
+  .stat b{display:block; font-size:1.05rem; color:var(--sap-dark); font-weight:800}
+  .stat span{font-size:0.9rem; color:var(--muted)}
 
-    /* Projects */
-    .projects {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-      gap: 1.5rem;
-    }
-    .project {
-      background: rgba(255,255,255,0.8);
-      border-radius: 12px;
-      padding: 1.5rem;
-      border-left: 5px solid var(--sap-blue);
-      box-shadow: 0 4px 15px rgba(0,0,0,0.05);
-      transition: transform 0.3s, border-color 0.3s, box-shadow 0.3s;
-    }
-    .project h3 {
-      color: var(--sap-dark);
-      margin-bottom: 0.5rem;
-    }
-    .project p {
-      margin-bottom: 1rem;
-    }
-    .project a {
-      color: var(--sap-orange);
-      font-weight: 600;
-    }
-    .project:hover {
-      transform: translateY(-5px);
-      border-left-color: var(--sap-orange);
-      box-shadow: 0 8px 25px rgba(0,0,0,0.15);
-    }
+  .hero-right{
+    display:flex; align-items:center; justify-content:center;
+    background: linear-gradient(135deg, var(--sap-blue), var(--sap-dark));
+    border-radius:18px; color:white; padding:1.6rem; box-shadow: 0 20px 50px rgba(10,117,194,0.18);
+    min-height:240px;
+  }
+  .card-profile{
+    width:100%; max-width:360px; text-align:left;
+  }
+  .avatar{
+    width:86px; height:86px; border-radius:14px; overflow:hidden; display:inline-block; border:4px solid rgba(255,255,255,0.15)
+  }
+  .title{font-size:1.15rem; font-weight:700; margin-top:0.6rem}
+  .subtitle{opacity:0.95; font-size:0.95rem; margin-top:0.35rem; color:rgba(255,255,255,0.92)}
 
-    /* Footer */
-    footer {
-      text-align: center;
-      padding: 2rem 1rem;
-      font-size: 0.9rem;
-      color: #555;
-    }
-  </style>
+  /* -----------------------
+     Sections style
+     ----------------------- */
+  section.block{margin:2rem auto; padding:2rem; border-radius:14px; background:var(--card); box-shadow:0 10px 30px rgba(11,18,32,0.04); border:1px solid rgba(10,117,194,0.03)}
+  section.block h2{margin-top:0; color:var(--sap-dark)}
+
+  /* Skills */
+  .skills-grid{display:grid; grid-template-columns:repeat(auto-fit, minmax(220px, 1fr)); gap:1rem}
+  .skill-card{
+    padding:1rem; border-radius:12px; background:linear-gradient(180deg,#fff,#fbfdff); border:1px solid rgba(10,117,194,0.03);
+    transition:transform var(--motion-fast) ease, box-shadow var(--motion-fast) ease;
+  }
+  .skill-card:focus-within, .skill-card:hover{ transform:translateY(-6px); box-shadow:0 12px 30px rgba(10,20,40,0.06) }
+
+  .skill-title{display:flex; justify-content:space-between; gap:1rem; align-items:center; font-weight:700; color:#0b1220}
+  .progress{height:12px; background:#f2f7fb; border-radius:999px; margin-top:0.65rem; overflow:hidden}
+  .progress > i{display:block; height:100%; width:0%; background:linear-gradient(90deg,var(--sap-blue),var(--sap-dark),var(--sap-orange)); transition:width 1.6s cubic-bezier(.2,.9,.2,1)}
+
+  /* Projects */
+  .projects-grid{display:grid; grid-template-columns:repeat(auto-fit,minmax(260px,1fr)); gap:1rem}
+  .project{
+    padding:1rem; border-radius:12px; background:linear-gradient(180deg,#fff,#fbfdff);
+    border-left:4px solid var(--sap-blue); min-height:130px; display:flex; flex-direction:column; gap:0.6rem; transition:transform var(--motion-fast) ease, border-color var(--motion-fast);
+  }
+  .project:hover{ transform:translateY(-6px); border-left-color:var(--sap-orange) }
+  .meta{display:flex; gap:0.6rem; align-items:center; color:var(--muted); font-size:0.9rem}
+  .badges{margin-left:auto; display:flex; gap:0.4rem; align-items:center}
+  .badge{background:rgba(10,117,194,0.06); color:var(--sap-dark); padding:4px 8px; border-radius:999px; font-weight:700; font-size:0.8rem}
+
+  /* loader */
+  .skeleton{height:12px; background:linear-gradient(90deg,#edf2f7, #f7fafc, #edf2f7); background-size:200% 100%; animation:skeleton 1.2s linear infinite}
+  @keyframes skeleton{ 0%{background-position:200% 0} 100%{background-position:-200% 0} }
+
+  /* Contact */
+  .contact-grid{display:grid; grid-template-columns:1fr 320px; gap:1.5rem; align-items:start}
+  .contact-card{padding:1rem; border-radius:12px; background:linear-gradient(180deg,#fff,#fbfdff); border:1px solid rgba(10,117,194,0.03)}
+
+  /* Footer */
+  footer{ text-align:center; color:var(--muted); padding:2.4rem 1rem; font-size:0.95rem }
+
+  /* Responsive */
+  @media (max-width:980px){
+    .hero{grid-template-columns:1fr; padding:1rem}
+    .hero-right{order:-1; margin-bottom:1rem}
+    .contact-grid{grid-template-columns:1fr}
+  }
+</style>
 </head>
 <body>
 
-  <header>
-    <div><strong>George Tiganourgias</strong></div>
-    <nav>
+<header>
+  <div class="nav-inner" role="navigation" aria-label="Primary">
+    <div class="brand">
+      <svg width="34" height="34" viewBox="0 0 48 48" aria-hidden focusable="false"><rect width="48" height="48" rx="10" fill="#0FAAFF"/><path d="M14 28a6 6 0 1 1 0-12 6 6 0 0 1 0 12zM26 18h10v12H26z" fill="#fff"/></svg>
+      <strong>George Tiganourgias</strong>
+    </div>
+
+    <nav aria-label="Main navigation">
       <a href="#about">About</a>
       <a href="#skills">Skills</a>
       <a href="#projects">Projects</a>
       <a href="#contact">Contact</a>
     </nav>
-    <button class="dark-toggle">🌗</button>
-  </header>
 
-  <section class="hero">
-    <h1>SAP Development Lead & Fiori Architect</h1>
-    <p>Building intelligent, elegant, and scalable SAP solutions.</p>
-    <a href="#projects">Explore My Work</a>
-  </section>
+    <div class="actions">
+      <a class="btn secondary" href="resume.pdf" download aria-label="Download resume (PDF)">Download CV</a>
+      <button class="btn" id="theme-toggle" title="Toggle theme" aria-pressed="false">🌗</button>
+    </div>
+  </div>
+</header>
 
-  <section id="about">
-    <h2>About Me</h2>
-    <p style="text-align:center; max-width:700px; margin:auto;">
-      I'm George Tiganourgias, an SAP Fiori Architect and Development Lead from Greece.  
-      I design and implement high-performance SAP applications, focusing on user experience, innovation, and scalability.
-    </p>
-  </section>
+<main>
 
-  <section id="skills">
-    <h2>Skills</h2>
-    <div class="skills">
-      <div class="skill"><p>SAP Fiori Development <span class="percent">90%</span></p><div class="skill-bar"><div class="skill-fill" data-fill="90"></div></div></div>
-      <div class="skill"><p>SAP ABAP / Core Development <span class="percent">85%</span></p><div class="skill-bar"><div class="skill-fill" data-fill="85"></div></div></div>
-      <div class="skill"><p>System Architecture <span class="percent">80%</span></p><div class="skill-bar"><div class="skill-fill" data-fill="80"></div></div></div>
-      <div class="skill"><p>Project Leadership <span class="percent">75%</span></p><div class="skill-bar"><div class="skill-fill" data-fill="75"></div></div></div>
+  <!-- HERO -->
+  <section class="hero" aria-labelledby="hero-title">
+    <div class="hero-left">
+      <span class="eyebrow">SAP Fiori Architect • Development Lead</span>
+      <h1 id="hero-title">George Tiganourgias</h1>
+      <p class="lead">I design scalable SAP solutions and delightful Fiori experiences — bridging strong engineering with elegant UX for enterprise applications.</p>
+
+      <div class="cta-row">
+        <a class="btn" href="#projects">Explore my work</a>
+        <a class="btn secondary" href="mailto:george@example.com">Contact me</a>
+      </div>
+
+      <div class="mini" aria-hidden>
+        <div class="stat"><b>8+</b><span>Years experience</span></div>
+        <div class="stat"><b>Navigo</b><span>Consulting — Greece</span></div>
+        <div class="stat"><b>Fiori & ABAP</b><span>Leader</span></div>
+      </div>
+    </div>
+
+    <div class="hero-right" aria-hidden>
+      <div class="card-profile">
+        <div style="display:flex; gap:1rem; align-items:center">
+          <div class="avatar" role="img" aria-label="Profile photo">
+            <!-- placeholder gradient avatar, replace with your image -->
+            <svg width="86" height="86" viewBox="0 0 120 120"><defs><linearGradient id="g" x1="0" x2="1"><stop offset="0" stop-color="#fff"/><stop offset="1" stop-color="#fff" stop-opacity="0.2"/></linearGradient></defs><rect width="120" height="120" rx="18" fill="rgba(255,255,255,0.06)"/><circle cx="60" cy="44" r="24" fill="rgba(255,255,255,0.18)"/><rect x="30" y="74" width="60" height="12" rx="6" fill="rgba(255,255,255,0.14)"/></svg>
+          </div>
+          <div>
+            <div class="title">George Tiganourgias</div>
+            <div class="subtitle">SAP Development Lead · Fiori Architect</div>
+          </div>
+        </div>
+
+        <p style="margin-top:1.2rem; color:rgba(255,255,255,0.95)">
+          I focus on modern Fiori UX, scalable ABAP design, and system architecture. I lead cross-functional teams to deliver quality enterprise software.
+        </p>
+
+        <div style="display:flex; gap:0.6rem; margin-top:1.4rem;">
+          <a href="https://github.com/yourusername" class="btn secondary" target="_blank" rel="noopener">GitHub</a>
+          <a href="https://www.linkedin.com/in/georgetiganourgias/" class="btn secondary" target="_blank" rel="noopener">LinkedIn</a>
+        </div>
+      </div>
     </div>
   </section>
 
-  <section id="projects">
-    <h2>Projects</h2>
-    <div class="projects" id="github-projects"></div>
+  <!-- ABOUT -->
+  <section id="about" class="block" aria-labelledby="about-h2">
+    <h2 id="about-h2">About</h2>
+    <div style="max-width:80ch; margin:auto; color: #25323f">
+      <p>I’m an SAP Development Lead & Fiori Architect based in Greece. I design and implement E2E SAP solutions with a focus on user-centered Fiori applications, efficient ABAP components, and robust system architecture. I enjoy improving performance, developer experience, and making complex systems simple for end-users.</p>
+    </div>
   </section>
 
-  <section id="contact">
-    <h2>Contact</h2>
-    <p style="text-align:center;">
-      📧 <a href="mailto:george@example.com">george@example.com</a>  
-      <br />
-      💼 <a href="https://www.linkedin.com/in/georgetiganourgias/" target="_blank">LinkedIn</a>
-    </p>
+  <!-- SKILLS -->
+  <section id="skills" class="block" aria-labelledby="skills-h2">
+    <h2 id="skills-h2">Skills</h2>
+    <div class="skills-grid">
+      <div class="skill-card" tabindex="0">
+        <div class="skill-title"><span>SAP Fiori Development</span><span class="percent" aria-hidden>90%</span></div>
+        <div class="progress" aria-hidden><i class="bar" data-fill="90"></i></div>
+      </div>
+
+      <div class="skill-card" tabindex="0">
+        <div class="skill-title"><span>SAP ABAP / Core Development</span><span class="percent" aria-hidden>85%</span></div>
+        <div class="progress" aria-hidden><i class="bar" data-fill="85"></i></div>
+      </div>
+
+      <div class="skill-card" tabindex="0">
+        <div class="skill-title"><span>System Architecture</span><span class="percent" aria-hidden>80%</span></div>
+        <div class="progress" aria-hidden><i class="bar" data-fill="80"></i></div>
+      </div>
+
+      <div class="skill-card" tabindex="0">
+        <div class="skill-title"><span>Project Leadership</span><span class="percent" aria-hidden>75%</span></div>
+        <div class="progress" aria-hidden><i class="bar" data-fill="75"></i></div>
+      </div>
+    </div>
   </section>
 
-  <footer>
-    © 2025 George Tiganourgias — Made with ❤️ and SAP-inspired design
-  </footer>
+  <!-- PROJECTS -->
+  <section id="projects" class="block" aria-labelledby="projects-h2">
+    <h2 id="projects-h2">Latest GitHub Projects</h2>
 
-  <script>
-    // Dark Mode
-    document.querySelector('.dark-toggle').addEventListener('click', () => {
-      document.body.classList.toggle('dark');
-    });
+    <!-- skeleton while loading -->
+    <div class="projects-grid" id="github-projects" aria-live="polite" aria-busy="true">
+      <div class="project"><div class="skeleton" style="height:16px; width:40%"></div><div class="skeleton" style="height:12px; width:80%; margin-top:10px"></div></div>
+      <div class="project"><div class="skeleton" style="height:16px; width:40%"></div><div class="skeleton" style="height:12px; width:80%; margin-top:10px"></div></div>
+      <div class="project"><div class="skeleton" style="height:16px; width:40%"></div><div class="skeleton" style="height:12px; width:80%; margin-top:10px"></div></div>
+    </div>
+  </section>
 
-    // Skills Animation
-    const skillFills = document.querySelectorAll('.skill-fill');
-    const percents = document.querySelectorAll('.percent');
-    const skillObserver = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if(entry.isIntersecting){
-          const fill = entry.target;
-          const percent = fill.parentElement.previousElementSibling.querySelector('.percent');
-          const target = parseInt(fill.dataset.fill);
-          let count = 0;
-          fill.style.width = target + '%';
-          const counter = setInterval(() => {
-            if(count >= target) clearInterval(counter);
-            else {
-              count++;
-              percent.textContent = count + '%';
-            }
-          }, 20);
-          skillObserver.unobserve(fill);
+  <!-- CONTACT -->
+  <section id="contact" class="block" aria-labelledby="contact-h2">
+    <h2 id="contact-h2">Contact</h2>
+    <div class="contact-grid">
+      <div style="color:#14202b">
+        <p>If you'd like to work together or learn more about my projects, feel free to reach out.</p>
+        <p><strong>Email</strong><br><a href="mailto:george@example.com">george@example.com</a></p>
+        <p><strong>Location</strong><br>Greece</p>
+      </div>
+      <div class="contact-card">
+        <strong>Let's connect</strong>
+        <p style="margin-top:0.5rem; color:var(--muted)">Prefer quick contact? Send a short note and I'll get back.</p>
+        <form id="contact-form" onsubmit="return contactSubmit(event)">
+          <div style="display:flex; flex-direction:column; gap:0.6rem; margin-top:0.8rem">
+            <input name="name" placeholder="Your name" required style="padding:10px;border-radius:8px;border:1px solid rgba(10,117,194,0.06)">
+            <input name="email" type="email" placeholder="Email" required style="padding:10px;border-radius:8px;border:1px solid rgba(10,117,194,0.06)">
+            <textarea name="message" rows="4" placeholder="Short message" required style="padding:10px;border-radius:8px;border:1px solid rgba(10,117,194,0.06)"></textarea>
+            <div style="display:flex; gap:0.5rem; justify-content:flex-end">
+              <button class="btn" type="submit">Send</button>
+            </div>
+          </div>
+        </form>
+        <p id="contact-note" style="margin-top:0.6rem; font-size:0.9rem; color:var(--muted)"></p>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  © <span id="year"></span> George Tiganourgias · Built with SAP-inspired UI • <a href="https://github.com/yourusername" target="_blank" rel="noopener">GitHub</a>
+</footer>
+
+<script>
+/* -----------------------
+   Small helpers
+   ----------------------- */
+document.getElementById('year').textContent = new Date().getFullYear();
+
+/* Theme toggle */
+const themeBtn = document.getElementById('theme-toggle');
+themeBtn.addEventListener('click', () => {
+  const isDark = document.body.classList.toggle('dark');
+  themeBtn.setAttribute('aria-pressed', String(isDark));
+});
+
+/* Skills animation: observe and animate bar width + percent */
+const bars = document.querySelectorAll('.bar');
+const obs = new IntersectionObserver((entries, o) => {
+  entries.forEach(entry => {
+    if(entry.isIntersecting){
+      const el = entry.target;
+      const target = el.dataset.fill || 80;
+      // fill bar
+      el.style.width = target + '%';
+      // add accessible percent
+      const percentLabel = el.closest('.skill-card').querySelector('.percent');
+      if(percentLabel){
+        let c = 0;
+        const t = parseInt(target,10);
+        const timer = setInterval(() => {
+          c++; percentLabel.textContent = c + '%';
+          if(c >= t) clearInterval(timer);
+        }, 12);
+      }
+      o.unobserve(el);
+    }
+  });
+}, {threshold: 0.45});
+bars.forEach(b => obs.observe(b));
+
+/* -----------------------
+   GitHub integration (projects)
+   - Replace yourusername with your GitHub handle
+   - Fetches most recently updated public repos (6)
+   ----------------------- */
+(async function loadRepos(){
+  const username = 'yourusername'; // <-- replace
+  const container = document.getElementById('github-projects');
+  try{
+    const res = await fetch(`https://api.github.com/users/${username}/repos?sort=updated&per_page=6`);
+    if(!res.ok) throw new Error('GitHub API error');
+    const repos = await res.json();
+
+    container.innerHTML = ''; // clear skeleton
+
+    // for each repo: try fetch languages (non-blocking)
+    for(const r of repos){
+      const card = document.createElement('article');
+      card.className = 'project';
+      // basic content
+      card.innerHTML = `
+        <div style="display:flex; align-items:center; gap:0.6rem;">
+          <h3 style="margin:0; font-size:1rem">${r.name}</h3>
+          <div class="badges"><span class="badge">${r.private ? 'private' : 'public'}</span></div>
+        </div>
+        <p style="margin:0.35rem 0 0.5rem 0; color:var(--muted); font-size:0.95rem">${(r.description || '').slice(0,140) || 'No description'}</p>
+        <div style="display:flex; align-items:center; gap:0.8rem; margin-top:auto; font-size:0.9rem; color:var(--muted)">
+          <div class="meta">⭐ ${r.stargazers_count}</div>
+          <div class="meta">🍴 ${r.forks_count}</div>
+          <div class="meta" style="margin-left:auto"><a href="${r.html_url}" target="_blank" rel="noopener">View</a></div>
+        </div>
+      `;
+      container.appendChild(card);
+
+      // fetch languages (best-effort)
+      fetch(r.languages_url).then(lres => lres.json()).then(langObj => {
+        const langs = Object.keys(langObj);
+        if(langs.length){
+          const badge = document.createElement('span');
+          badge.className='badge';
+          badge.textContent = langs[0];
+          card.querySelector('.badges').appendChild(badge);
         }
-      });
-    }, { threshold: 0.5 });
-    skillFills.forEach(fill => skillObserver.observe(fill));
+      }).catch(()=>{ /* ignore language errors silently */ });
+      // stagger reveal
+      setTimeout(()=> card.style.transform = 'translateY(0)', 80);
+    }
+    container.setAttribute('aria-busy','false');
+  }catch(e){
+    container.innerHTML = '<div style="color:var(--muted)">Failed to load GitHub projects. Check your username or rate limits.</div>';
+    console.error(e);
+  }
+})();
 
-    // Fetch GitHub Projects
-    const username = "yourusername"; // Replace with your GitHub username
-    const repoContainer = document.getElementById('github-projects');
-    fetch(`https://api.github.com/users/${username}/repos?sort=updated&per_page=6`)
-      .then(res => res.json())
-      .then(repos => {
-        repos.forEach(repo => {
-          const repoDiv = document.createElement('div');
-          repoDiv.classList.add('project');
-          repoDiv.innerHTML = `
-            <h3>${repo.name}</h3>
-            <p>${repo.description || "No description available."}</p>
-            <p>⭐ ${repo.stargazers_count} | 🍴 ${repo.forks_count}</p>
-            <a href="${repo.html_url}" target="_blank">View on GitHub</a>
-          `;
-          repoContainer.appendChild(repoDiv);
-        });
-      })
-      .catch(err => console.error(err));
-  </script>
+/* Contact form (no backend) - create mailto prefilling for quick usage */
+function contactSubmit(e){
+  e.preventDefault();
+  const f = e.target;
+  const name = encodeURIComponent(f.name.value.trim());
+  const email = encodeURIComponent(f.email.value.trim());
+  const msg = encodeURIComponent(f.message.value.trim());
+  const subject = encodeURIComponent('Portfolio contact from ' + (f.name.value || 'Website visitor'));
+  const body = encodeURIComponent(`Name: ${f.name.value}\nEmail: ${f.email.value}\n\n${f.message.value}`);
+  const mailto = `mailto:george@example.com?subject=${subject}&body=${body}`;
+  // fallback: open mailto so user can send from their client
+  window.location.href = mailto;
+  // show note
+  const note = document.getElementById('contact-note');
+  note.textContent = 'Your email client opened — please confirm and send the message. Alternatively email me directly.';
+  f.reset();
+  return false;
+}
+
+/* Accessibility: reduce motion respects already handled by CSS */
+</script>
 </body>
 </html>
