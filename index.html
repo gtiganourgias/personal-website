@@ -1,228 +1,301 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>George Tiganourgias</title>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
-<style>
-  /* --- Base --- */
-  * { margin:0; padding:0; box-sizing:border-box; font-family:'Inter', sans-serif; scroll-behavior:smooth; }
-  body { background:#E6F4FF; color:#111; line-height:1.6; transition: background 0.3s, color 0.3s; }
-  a { text-decoration:none; transition:0.3s; }
-  a:hover { opacity:0.8; }
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>George Tiganourgias | SAP Fiori Architect</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+  <style>
+    /* Root Palette */
+    :root {
+      --sap-blue: #0FAAFF;
+      --sap-dark: #0A75C2;
+      --sap-light: #E6F4FF;
+      --sap-orange: #FF8C00;
+      --text: #222;
+      --bg: #F7FAFC;
+    }
 
-  /* --- SAP Color Palette --- */
-  :root {
-    --primary: #0FAAFF;      /* SAP Blue */
-    --secondary: #0A75C2;    /* Dark Blue / Accent */
-    --accent: #FF8C00;       /* SAP Orange */
-    --section-bg: #ffffff;
-    --skill-bg: #E6F4FF;
-    --project-bg: #ffffff;
-  }
+    body {
+      font-family: 'Inter', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      margin: 0;
+      transition: background 0.3s, color 0.3s;
+    }
 
-  body.dark { background:#0A75C2; color:#f5f5f5; }
-  body.dark header, body.dark .skill, body.dark .project { background:#0A75C2; }
+    body.dark {
+      background: #0A1724;
+      color: #E6F4FF;
+    }
 
-  /* --- Header --- */
-  header { position:sticky; top:0; z-index:100; background:#ffffff; padding:1rem 2rem; display:flex; justify-content:space-between; align-items:center; box-shadow:0 2px 10px rgba(0,0,0,0.05); }
-  header nav a { margin-left:1.5rem; font-weight:600; color:var(--primary); }
-  .dark-toggle { cursor:pointer; background:var(--primary); color:#fff; border:none; padding:0.5rem 1rem; border-radius:5px; font-weight:600; }
+    /* Header */
+    header {
+      position: sticky;
+      top: 0;
+      backdrop-filter: blur(15px);
+      background: rgba(255,255,255,0.7);
+      border-bottom: 1px solid rgba(15,170,255,0.2);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1rem 2rem;
+      z-index: 100;
+    }
+    header nav a {
+      margin: 0 1rem;
+      font-weight: 600;
+      color: var(--sap-dark);
+    }
+    header nav a:hover {
+      color: var(--sap-blue);
+    }
+    .dark-toggle {
+      background: var(--sap-blue);
+      color: #fff;
+      border: none;
+      padding: 0.5rem 1rem;
+      border-radius: 8px;
+      cursor: pointer;
+      font-weight: 600;
+    }
 
-  /* --- Hero --- */
-  .hero { display:flex; flex-direction:column; align-items:center; justify-content:center; height:90vh; text-align:center; background:linear-gradient(135deg, #0FAAFF, #0A75C2); color:#fff; padding:0 1rem; }
-  .hero h1 { font-size:3rem; margin-bottom:0.5rem; opacity:0; transform:translateY(20px); transition:0.8s ease; }
-  .hero p { font-size:1.25rem; margin-bottom:1.5rem; opacity:0; transform:translateY(20px); transition:0.8s ease 0.2s; }
-  .hero a.button { padding:0.75rem 1.5rem; background:var(--accent); color:#fff; border-radius:5px; font-weight:600; transition:0.3s; opacity:0; transform:translateY(20px); transition:0.8s ease 0.4s; }
-  .hero a.button:hover { background:#e67300; }
+    /* Hero */
+    .hero {
+      height: 90vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      background: linear-gradient(135deg, var(--sap-blue), var(--sap-dark));
+      color: #fff;
+      text-align: center;
+    }
+    .hero h1 {
+      font-size: 3rem;
+      font-weight: 700;
+      background: linear-gradient(90deg, #fff, var(--sap-light), var(--sap-orange));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      animation: gradientMove 6s infinite alternate ease-in-out;
+    }
+    @keyframes gradientMove {
+      0% { background-position: 0% 50%; }
+      100% { background-position: 100% 50%; }
+    }
+    .hero p {
+      font-size: 1.25rem;
+      margin: 1rem 0;
+    }
+    .hero a {
+      background: var(--sap-orange);
+      color: #fff;
+      padding: 0.8rem 1.6rem;
+      border-radius: 8px;
+      font-weight: 600;
+      transition: 0.3s;
+    }
+    .hero a:hover {
+      background: #e67300;
+      transform: scale(1.05);
+    }
 
-  /* --- Sections --- */
-  section { max-width:900px; margin:3rem auto; padding:2rem 1rem; background:var(--section-bg); border-radius:12px; opacity:0; transform:translateY(30px); transition:1s ease; box-shadow:0 4px 15px rgba(0,0,0,0.05); }
-  section h2 { font-size:2rem; margin-bottom:1.5rem; text-align:center; color:var(--primary); }
+    /* Sections */
+    section {
+      max-width: 1000px;
+      margin: 4rem auto;
+      padding: 2rem;
+      border-radius: 16px;
+      background: rgba(255,255,255,0.6);
+      backdrop-filter: blur(10px);
+      box-shadow: 0 8px 25px rgba(0,0,0,0.08);
+    }
+    section h2 {
+      text-align: center;
+      font-size: 2rem;
+      margin-bottom: 2rem;
+      color: var(--sap-dark);
+    }
 
-  /* --- Skills --- */
-.skills { display:grid; grid-template-columns:repeat(auto-fit, minmax(200px, 1fr)); gap:1.5rem; }
-.skill { background: #E6F4FF; padding:1rem; border-radius:10px; }
-.skill p { margin-bottom:0.5rem; font-weight:600; }
-.skill-bar {
-  width:100%; height:12px; background:#ffffff; border-radius:6px; overflow:hidden; box-shadow:0 1px 3px rgba(0,0,0,0.1);
-}
-.skill-fill {
-  width:0%; height:100%; background:#0FAAFF; border-radius:6px; transition: width 1.5s ease-in-out;
-}
+    /* Skills */
+    .skills {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 2rem;
+    }
+    .skill {
+      background: rgba(255,255,255,0.75);
+      border: 1px solid rgba(15,170,255,0.2);
+      border-radius: 12px;
+      padding: 1.5rem;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+    }
+    .skill p {
+      display: flex;
+      justify-content: space-between;
+      font-weight: 600;
+      margin-bottom: 0.5rem;
+    }
+    .skill-bar {
+      height: 10px;
+      background: #e6f0fa;
+      border-radius: 5px;
+      overflow: hidden;
+    }
+    .skill-fill {
+      width: 0%;
+      height: 100%;
+      border-radius: 5px;
+      background: linear-gradient(90deg, var(--sap-blue), var(--sap-dark), var(--sap-orange));
+      background-size: 300% 100%;
+      animation: gradientMove 3s infinite alternate;
+      transition: width 1.5s ease;
+    }
 
-  .projects { display:grid; grid-template-columns:repeat(auto-fit, minmax(250px, 1fr)); gap:1.5rem; }
+    /* Projects */
+    .projects {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 1.5rem;
+    }
+    .project {
+      background: rgba(255,255,255,0.8);
+      border-radius: 12px;
+      padding: 1.5rem;
+      border-left: 5px solid var(--sap-blue);
+      box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+      transition: transform 0.3s, border-color 0.3s, box-shadow 0.3s;
+    }
+    .project h3 {
+      color: var(--sap-dark);
+      margin-bottom: 0.5rem;
+    }
+    .project p {
+      margin-bottom: 1rem;
+    }
+    .project a {
+      color: var(--sap-orange);
+      font-weight: 600;
+    }
+    .project:hover {
+      transform: translateY(-5px);
+      border-left-color: var(--sap-orange);
+      box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+    }
 
-  .project {
-    background:#ffffff;
-    padding:1.5rem;
-    border-radius:12px;
-    box-shadow:0 4px 10px rgba(0,0,0,0.05);
-    transition: transform 0.4s, box-shadow 0.4s, border-color 0.4s, background 0.4s;
-    opacity:0;
-    transform:translateY(20px);
-    border-left:5px solid var(--primary);
-  }
-
-  .project.show { opacity:1; transform:translateY(0); }
-
-  .project h3 { color:var(--primary); margin-bottom:0.5rem; }
-  .project a { color:var(--accent); font-weight:600; text-decoration:none; }
-  .project:hover {
-    transform:translateY(-5px);
-    box-shadow:0 8px 20px rgba(0,0,0,0.15);
-    border-left-color: var(--accent); /* SAP Orange on hover */
-    background:#E6F4FF; /* Light SAP blue background on hover */
-  }
-
-  /* Optional: Alternate SAP Blue shades for multiple cards */
-  .project-color-0 { border-left-color: #0FAAFF; }
-  .project-color-1 { border-left-color: #0A75C2; }
-  .project-color-2 { border-left-color: #0FAAFF; }
-  .project-color-3 { border-left-color: #0A75C2; }
-  .project-color-4 { border-left-color: #0FAAFF; }
-  .project-color-5 { border-left-color: #0A75C2; }
-
-  /* --- Footer --- */
-  footer { text-align:center; padding:2rem 1rem; color:#555; font-size:0.9rem; }
-</style>
-  
+    /* Footer */
+    footer {
+      text-align: center;
+      padding: 2rem 1rem;
+      font-size: 0.9rem;
+      color: #555;
+    }
+  </style>
 </head>
 <body>
 
-<header>
-  <div><strong>George Tiganourgias</strong></div>
-  <nav>
-    <a href="#about">About</a>
-    <a href="#skills">Skills</a>
-    <a href="#projects">Projects</a>
-    <a href="#contact">Contact</a>
-    <button class="dark-toggle" onclick="toggleDark()">Dark</button>
-  </nav>
-</header>
+  <header>
+    <div><strong>George Tiganourgias</strong></div>
+    <nav>
+      <a href="#about">About</a>
+      <a href="#skills">Skills</a>
+      <a href="#projects">Projects</a>
+      <a href="#contact">Contact</a>
+    </nav>
+    <button class="dark-toggle">🌗</button>
+  </header>
 
-<div class="hero">
-  <h1>Hello, I'm George</h1>
-  <p>SAP Development Lead | Navigo Consulting | Greece</p>
-  <a href="#contact" class="button">Contact Me</a>
-</div>
+  <section class="hero">
+    <h1>SAP Development Lead & Fiori Architect</h1>
+    <p>Building intelligent, elegant, and scalable SAP solutions.</p>
+    <a href="#projects">Explore My Work</a>
+  </section>
 
-<section id="about">
-  <h2>About Me</h2>
-  <p>SAP Development Lead with 6+ years of experience specializing in ABAP, Fiori, and S/4HANA development. Strong background in full-cycle SAP implementations, performance optimization, and modernizing legacy systems. Adept at leading agile teams, fostering collaboration, and delivering innovative digital solutions that enhance business efficiency and user experience.</p>
-</section>
+  <section id="about">
+    <h2>About Me</h2>
+    <p style="text-align:center; max-width:700px; margin:auto;">
+      I'm George Tiganourgias, an SAP Fiori Architect and Development Lead from Greece.  
+      I design and implement high-performance SAP applications, focusing on user experience, innovation, and scalability.
+    </p>
+  </section>
 
   <section id="skills">
-  <h2>Skills</h2>
-  <div class="skills">
-    <div class="skill">
-      <p>SAP Build Developer</p>
-      <div class="skill-bar"><div class="skill-fill" data-fill="90"></div></div>
+    <h2>Skills</h2>
+    <div class="skills">
+      <div class="skill"><p>SAP Fiori Development <span class="percent">90%</span></p><div class="skill-bar"><div class="skill-fill" data-fill="90"></div></div></div>
+      <div class="skill"><p>SAP ABAP / Core Development <span class="percent">85%</span></p><div class="skill-bar"><div class="skill-fill" data-fill="85"></div></div></div>
+      <div class="skill"><p>System Architecture <span class="percent">80%</span></p><div class="skill-bar"><div class="skill-fill" data-fill="80"></div></div></div>
+      <div class="skill"><p>Project Leadership <span class="percent">75%</span></p><div class="skill-bar"><div class="skill-fill" data-fill="75"></div></div></div>
     </div>
-    <div class="skill">
-      <p>SAP BTP</p>
-      <div class="skill-bar"><div class="skill-fill" data-fill="85"></div></div>
-    </div>
-    <div class="skill">
-      <p>SAP Fiori</p>
-      <div class="skill-bar"><div class="skill-fill" data-fill="80"></div></div>
-    </div>
-    <div class="skill">
-      <p>SAP ABAP/Core Development</p>
-      <div class="skill-bar"><div class="skill-fill" data-fill="75"></div></div>
-    </div>
-    <div class="skill">
-      <p>SAP Architecture</p>
-      <div class="skill-bar"><div class="skill-fill" data-fill="70"></div></div>
-    </div>
-    <div class="skill">
-      <p>Project Leadership</p>
-      <div class="skill-bar"><div class="skill-fill" data-fill="65"></div></div>
-    </div>
-  </div>
-</section>
+  </section>
 
-<section id="projects">
-  <h2>Projects</h2>
-  <div class="projects" id="github-projects">
-  </div>
-</section>
+  <section id="projects">
+    <h2>Projects</h2>
+    <div class="projects" id="github-projects"></div>
+  </section>
 
-<section id="contact">
-  <h2>Contact</h2>
-  <p>Email: <a href="mailto:g.tiganourgias@gmail.com">g.tiganourgias@gmail.com</a></p>
-  <p>LinkedIn: <a href="https://www.linkedin.com/in/gtiganourgias/" target="_blank">gtiganourgias</a></p>
-  <p>GitHub: <a href="https://github.com/gtiganourgias" target="_blank">gtiganourgias</a></p>
-</section>
-  
-<footer>
-  &copy; 2025 George Tiganourgias. All rights reserved.
-</footer>
+  <section id="contact">
+    <h2>Contact</h2>
+    <p style="text-align:center;">
+      📧 <a href="mailto:george@example.com">george@example.com</a>  
+      <br />
+      💼 <a href="https://www.linkedin.com/in/georgetiganourgias/" target="_blank">LinkedIn</a>
+    </p>
+  </section>
 
-<script>
-  // Scroll Animations
-  const sections = document.querySelectorAll('section, .hero h1, .hero p, .hero a');
-  const options = { threshold: 0.1 };
-  const observer = new IntersectionObserver((entries, observer) => {
-    entries.forEach(entry => {
-      if(entry.isIntersecting){
-        entry.target.style.opacity = 1;
-        entry.target.style.transform = 'translateY(0)';
-        observer.unobserve(entry.target);
-      }
+  <footer>
+    © 2025 George Tiganourgias — Made with ❤️ and SAP-inspired design
+  </footer>
+
+  <script>
+    // Dark Mode
+    document.querySelector('.dark-toggle').addEventListener('click', () => {
+      document.body.classList.toggle('dark');
     });
-  }, options);
-  sections.forEach(section => observer.observe(section));
 
-  // Dark Mode Toggle
-  function toggleDark() {
-    document.body.classList.toggle('dark');
-  }
+    // Skills Animation
+    const skillFills = document.querySelectorAll('.skill-fill');
+    const percents = document.querySelectorAll('.percent');
+    const skillObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if(entry.isIntersecting){
+          const fill = entry.target;
+          const percent = fill.parentElement.previousElementSibling.querySelector('.percent');
+          const target = parseInt(fill.dataset.fill);
+          let count = 0;
+          fill.style.width = target + '%';
+          const counter = setInterval(() => {
+            if(count >= target) clearInterval(counter);
+            else {
+              count++;
+              percent.textContent = count + '%';
+            }
+          }, 20);
+          skillObserver.unobserve(fill);
+        }
+      });
+    }, { threshold: 0.5 });
+    skillFills.forEach(fill => skillObserver.observe(fill));
 
-const username = "gtiganourgias"; // <-- replace with your GitHub username
-const repoContainer = document.getElementById('github-projects');
-const colors = ['project-color-0','project-color-1','project-color-2','project-color-3','project-color-4','project-color-5'];
-
-fetch(`https://api.github.com/users/${username}/repos?sort=updated&per_page=6`)
-  .then(res => res.json())
-  .then(repos => {
-    repos.forEach((repo, index) => {
-      const repoDiv = document.createElement('div');
-      repoDiv.classList.add('project', colors[index % colors.length]); // Cycle SAP-themed colors
-      repoDiv.innerHTML = `
-        <h3>${repo.name}</h3>
-        <p>${repo.description || "No description provided."}</p>
-        <p>⭐ ${repo.stargazers_count} | 🍴 ${repo.forks_count}</p>
-        <a href="${repo.html_url}" target="_blank">View Code</a>
-      `;
-      repoContainer.appendChild(repoDiv);
-
-      // Fade-in animation with staggered delay
-      setTimeout(() => {
-        repoDiv.classList.add('show');
-      }, index * 200);
-    });
-  })
-  .catch(err => {
-    repoContainer.innerHTML = `<p>Failed to load projects. Please check your GitHub username.</p>`;
-    console.error(err);
-  });
-
-  const skillFills = document.querySelectorAll('.skill-fill');
-
-const skillObserver = new IntersectionObserver((entries) => {
-  entries.forEach(entry => {
-    if(entry.isIntersecting){
-      const fill = entry.target;
-      fill.style.width = fill.dataset.fill + '%';
-      skillObserver.unobserve(fill);
-    }
-  });
-}, { threshold: 0.5 });
-
-skillFills.forEach(fill => skillObserver.observe(fill));
-</script>
-  
+    // Fetch GitHub Projects
+    const username = "yourusername"; // Replace with your GitHub username
+    const repoContainer = document.getElementById('github-projects');
+    fetch(`https://api.github.com/users/${username}/repos?sort=updated&per_page=6`)
+      .then(res => res.json())
+      .then(repos => {
+        repos.forEach(repo => {
+          const repoDiv = document.createElement('div');
+          repoDiv.classList.add('project');
+          repoDiv.innerHTML = `
+            <h3>${repo.name}</h3>
+            <p>${repo.description || "No description available."}</p>
+            <p>⭐ ${repo.stargazers_count} | 🍴 ${repo.forks_count}</p>
+            <a href="${repo.html_url}" target="_blank">View on GitHub</a>
+          `;
+          repoContainer.appendChild(repoDiv);
+        });
+      })
+      .catch(err => console.error(err));
+  </script>
 </body>
 </html>
