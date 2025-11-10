@@ -8,39 +8,53 @@
 <style>
   /* --- Base --- */
   * { margin:0; padding:0; box-sizing:border-box; font-family:'Inter', sans-serif; scroll-behavior:smooth; }
-  body { background:#f9f9f9; color:#111; line-height:1.6; transition: background 0.3s, color 0.3s; }
-  a { text-decoration:none; color:#0070f3; transition:0.3s; }
-  a:hover { color:#005bb5; }
+  body { background:#f5f7fa; color:#111; line-height:1.6; transition: background 0.3s, color 0.3s; }
+  a { text-decoration:none; transition:0.3s; }
+  a:hover { opacity:0.8; }
+
+  /* --- Colors --- */
+  :root {
+    --primary:#4f46e5;      /* Indigo */
+    --secondary:#facc15;    /* Amber */
+    --accent:#10b981;       /* Emerald */
+    --section-bg:#ffffff;
+    --skill-bg:#eef2ff;
+    --project-bg:#ffffff;
+  }
+
+  body.dark { background:#111; color:#f5f5f5; }
+  body.dark header, body.dark .skill, body.dark .project { background:#1a1a1a; }
 
   /* --- Header --- */
   header { position:sticky; top:0; z-index:100; background:#fff; padding:1rem 2rem; display:flex; justify-content:space-between; align-items:center; box-shadow:0 2px 10px rgba(0,0,0,0.05); }
-  header nav a { margin-left:1.5rem; font-weight:600; }
-  .hero { display:flex; flex-direction:column; align-items:center; justify-content:center; height:90vh; text-align:center; padding:0 1rem; }
+  header nav a { margin-left:1.5rem; font-weight:600; color:var(--primary); }
+  .dark-toggle { cursor:pointer; background:var(--primary); color:#fff; border:none; padding:0.5rem 1rem; border-radius:5px; font-weight:600; }
+
+  /* --- Hero --- */
+  .hero { display:flex; flex-direction:column; align-items:center; justify-content:center; height:90vh; text-align:center; padding:0 1rem; background:linear-gradient(135deg, #4f46e5, #3b82f6); color:#fff; }
   .hero h1 { font-size:3rem; margin-bottom:0.5rem; opacity:0; transform:translateY(20px); transition:0.8s ease; }
-  .hero p { font-size:1.25rem; color:#555; margin-bottom:1.5rem; opacity:0; transform:translateY(20px); transition:0.8s ease 0.2s; }
-  .hero a.button { padding:0.75rem 1.5rem; background:#0070f3; color:#fff; border-radius:5px; font-weight:600; transition:0.3s; opacity:0; transform:translateY(20px); transition:0.8s ease 0.4s; }
-  .hero a.button:hover { background:#005bb5; }
+  .hero p { font-size:1.25rem; margin-bottom:1.5rem; opacity:0; transform:translateY(20px); transition:0.8s ease 0.2s; }
+  .hero a.button { padding:0.75rem 1.5rem; background:var(--secondary); color:#111; border-radius:5px; font-weight:600; transition:0.3s; opacity:0; transform:translateY(20px); transition:0.8s ease 0.4s; }
+  .hero a.button:hover { background:#f59e0b; }
 
   /* --- Sections --- */
-  section { max-width:900px; margin:3rem auto; padding:0 1rem; opacity:0; transform:translateY(30px); transition:1s ease; }
-  section h2 { font-size:2rem; margin-bottom:1rem; text-align:center; }
-  .skills, .projects { display:grid; grid-template-columns:repeat(auto-fit, minmax(250px, 1fr)); gap:1.5rem; }
-  .skill, .project { background:#fff; padding:1.5rem; border-radius:10px; box-shadow:0 2px 10px rgba(0,0,0,0.05); transition:transform 0.3s, box-shadow 0.3s; }
-  .skill:hover, .project:hover { transform:translateY(-5px); box-shadow:0 5px 15px rgba(0,0,0,0.1); }
+  section { max-width:900px; margin:3rem auto; padding:2rem 1rem; background:var(--section-bg); border-radius:12px; opacity:0; transform:translateY(30px); transition:1s ease; box-shadow:0 4px 15px rgba(0,0,0,0.05); }
+  section h2 { font-size:2rem; margin-bottom:1.5rem; text-align:center; color:var(--primary); }
+
+  /* --- Skills --- */
+  .skills { display:grid; grid-template-columns:repeat(auto-fit, minmax(200px, 1fr)); gap:1.5rem; }
+  .skill { background:var(--skill-bg); padding:1.5rem; border-radius:10px; font-weight:600; text-align:center; transition:transform 0.3s, background 0.3s; }
+  .skill:hover { transform:translateY(-5px); background:var(--accent); color:#fff; }
+
+  /* --- Projects --- */
+  .projects { display:grid; grid-template-columns:repeat(auto-fit, minmax(250px, 1fr)); gap:1.5rem; }
+  .project { background:var(--project-bg); padding:1.5rem; border-radius:12px; box-shadow:0 4px 10px rgba(0,0,0,0.05); transition:transform 0.3s, box-shadow 0.3s; border-left:5px solid var(--primary); }
+  .project h3 { color:var(--primary); }
+  .project a { color:var(--accent); font-weight:600; }
+  .project:hover { transform:translateY(-5px); box-shadow:0 8px 20px rgba(0,0,0,0.1); }
 
   /* --- Footer --- */
-  footer { text-align:center; padding:2rem 1rem; color:#777; font-size:0.9rem; }
-
-  /* --- Dark Mode --- */
-  body.dark { background:#111; color:#f9f9f9; }
-  body.dark a { color:#0abde3; }
-  body.dark header { background:#1a1a1a; box-shadow:0 2px 10px rgba(255,255,255,0.05); }
-  body.dark .skill, body.dark .project { background:#1a1a1a; box-shadow:0 2px 10px rgba(255,255,255,0.05); }
-
-  /* --- Dark Mode Button --- */
-  .dark-toggle { cursor:pointer; background:#0070f3; color:#fff; border:none; padding:0.5rem 1rem; border-radius:5px; font-weight:600; transition:0.3s; }
-  .dark-toggle:hover { background:#005bb5; }
-
+  footer { text-align:center; padding:2rem 1rem; color:#555; font-size:0.9rem; }
 </style>
 </head>
 <body>
@@ -79,7 +93,7 @@
 
 <section id="projects">
   <h2>Projects</h2>
-  <div class="projects">
+  <div class="projects" id="github-projects">
     <div class="project">
       <h3>Project 1</h3>
       <p>Short description of a notable SAP/Fiori project.</p>
@@ -98,6 +112,13 @@
   <p>Email: <a href="mailto:george@example.com">george@example.com</a></p>
   <p>LinkedIn: <a href="https://www.linkedin.com/in/georgetiganourgias/" target="_blank">georgetiganourgias</a></p>
   <p>GitHub: <a href="https://github.com/yourusername" target="_blank">yourusername</a></p>
+</section>
+
+  <section id="projects">
+  <h2>Projects</h2>
+  <div class="projects" id="github-projects">
+    <!-- GitHub repos will load here -->
+  </div>
 </section>
 
 <footer>
@@ -123,7 +144,29 @@
   function toggleDark() {
     document.body.classList.toggle('dark');
   }
-</script>
+  
+  const username = "gtiganourgias"; // replace with your GitHub username
+  const repoContainer = document.getElementById('github-projects');
 
+  fetch(`https://api.github.com/users/${username}/repos?sort=updated&per_page=6`)
+    .then(res => res.json())
+    .then(repos => {
+      repos.forEach(repo => {
+        const repoDiv = document.createElement('div');
+        repoDiv.classList.add('project');
+        repoDiv.innerHTML = `
+          <h3>${repo.name}</h3>
+          <p>${repo.description || "No description provided."}</p>
+          <p>⭐ ${repo.stargazers_count} | 🍴 ${repo.forks_count}</p>
+          <a href="${repo.html_url}" target="_blank">View Code</a>
+        `;
+        repoContainer.appendChild(repoDiv);
+      });
+    })
+    .catch(err => {
+      repoContainer.innerHTML = `<p>Failed to load projects. Please check your GitHub username.</p>`;
+      console.error(err);
+    });
+</script>
 </body>
 </html>
