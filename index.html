@@ -48,10 +48,37 @@
 
   /* --- Projects --- */
   .projects { display:grid; grid-template-columns:repeat(auto-fit, minmax(250px, 1fr)); gap:1.5rem; }
-  .project { background:var(--project-bg); padding:1.5rem; border-radius:12px; box-shadow:0 4px 10px rgba(0,0,0,0.05); transition:transform 0.3s, box-shadow 0.3s; border-left:5px solid var(--primary); }
-  .project h3 { color:var(--primary); }
-  .project a { color:var(--accent); font-weight:600; }
-  .project:hover { transform:translateY(-5px); box-shadow:0 8px 20px rgba(0,0,0,0.1); }
+
+  .project {
+    background:#ffffff;
+    padding:1.5rem;
+    border-radius:12px;
+    box-shadow:0 4px 10px rgba(0,0,0,0.05);
+    transition:transform 0.4s, box-shadow 0.4s, border-color 0.4s;
+    opacity:0; /* start hidden for animation */
+    transform:translateY(20px);
+    border-left:5px solid transparent;
+  }
+
+  .project.show {
+    opacity:1;
+    transform:translateY(0);
+  }
+
+  .project h3 { margin-bottom:0.5rem; }
+  .project a { color:#10b981; font-weight:600; text-decoration:none; }
+  .project:hover {
+    transform:translateY(-5px);
+    box-shadow:0 8px 20px rgba(0,0,0,0.15);
+  }
+
+  /* Color palette for projects */
+  .project-color-0 { border-left-color:#4f46e5; } /* Indigo */
+  .project-color-1 { border-left-color:#f59e0b; } /* Amber */
+  .project-color-2 { border-left-color:#10b981; } /* Emerald */
+  .project-color-3 { border-left-color:#3b82f6; } /* Blue */
+  .project-color-4 { border-left-color:#ec4899; } /* Pink */
+  .project-color-5 { border-left-color:#f97316; } /* Orange */
 
   /* --- Footer --- */
   footer { text-align:center; padding:2rem 1rem; color:#555; font-size:0.9rem; }
@@ -140,29 +167,33 @@
     document.body.classList.toggle('dark');
   }
   
-  const username = "gtiganourgias"; // replace with your GitHub username
-  const repoContainer = document.getElementById('github-projects');
+const username = "gtiganourgias"; // <-- replace with your GitHub username
+const repoContainer = document.getElementById('github-projects');
+const colors = ['project-color-0','project-color-1','project-color-2','project-color-3','project-color-4','project-color-5'];
 
-  fetch(`https://api.github.com/users/${username}/repos?sort=updated&per_page=6`)
-    .then(res => res.json())
-    .then(repos => {
-      repos.forEach(repo => {
-        const repoDiv = document.createElement('div');
-        repoDiv.classList.add('project');
-        repoDiv.innerHTML = `
-          <h3>${repo.name}</h3>
-          <p>${repo.description || "No description provided."}</p>
-          <p>⭐ ${repo.stargazers_count} | 🍴 ${repo.forks_count}</p>
-          <a href="${repo.html_url}" target="_blank">View Code</a>
-        `;
-        repoContainer.appendChild(repoDiv);
-      });
-    })
-    .catch(err => {
-      repoContainer.innerHTML = `<p>Failed to load projects. Please check your GitHub username.</p>`;
-      console.error(err);
+fetch(`https://api.github.com/users/${username}/repos?sort=updated&per_page=6`)
+  .then(res => res.json())
+  .then(repos => {
+    repos.forEach((repo, index) => {
+      const repoDiv = document.createElement('div');
+      repoDiv.classList.add('project', colors[index % colors.length]); // cycle colors
+      repoDiv.innerHTML = `
+        <h3>${repo.name}</h3>
+        <p>${repo.description || "No description provided."}</p>
+        <p>⭐ ${repo.stargazers_count} | 🍴 ${repo.forks_count}</p>
+        <a href="${repo.html_url}" target="_blank">View Code</a>
+      `;
+      repoContainer.appendChild(repoDiv);
+      // Animate each card with a staggered delay
+      setTimeout(() => {
+        repoDiv.classList.add('show');
+      }, index * 200); 
     });
+  })
+  .catch(err => {
+    repoContainer.innerHTML = `<p>Failed to load projects. Please check your GitHub username.</p>`;
+    console.error(err);
+  });
 </script>
 </body>
 </html>
-
