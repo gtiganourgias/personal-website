@@ -2,10 +2,9 @@
 
 ![Website Badge](https://img.shields.io/badge/Portfolio-Online-brightgreen)
 ![GitHub Followers](https://img.shields.io/github/followers/gtiganourgias?label=Followers&style=social)
-![Top Language](https://img.shields.io/github/languages/top/gtiganourgias/yourrepo)
+![Top Language](https://img.shields.io/github/languages/top/gtiganourgias/personal-website)
 ![Repo Count](https://img.shields.io/github/repo-count/gtiganourgias?color=blue)
-![Last Commit](https://img.shields.io/github/last-commit/gtiganourgias/yourrepo)
-![Visitor Count](https://profile-counter.glitch.me/gtiganourgias/count.svg)
+![Last Commit](https://img.shields.io/github/last-commit/gtiganourgias/personal-website)
 
 Welcome to my personal portfolio website repository! 🚀
 
