@@ -42,9 +42,15 @@
   section h2 { font-size:2rem; margin-bottom:1.5rem; text-align:center; color:var(--primary); }
 
   /* --- Skills --- */
-  .skills { display:grid; grid-template-columns:repeat(auto-fit, minmax(200px, 1fr)); gap:1.5rem; }
-  .skill { background:var(--skill-bg); padding:1.5rem; border-radius:10px; font-weight:600; text-align:center; transition:transform 0.3s, background 0.3s, color 0.3s; }
-  .skill:hover { transform:translateY(-5px); background:var(--primary); color:#fff; }
+.skills { display:grid; grid-template-columns:repeat(auto-fit, minmax(200px, 1fr)); gap:1.5rem; }
+.skill { background: #E6F4FF; padding:1rem; border-radius:10px; }
+.skill p { margin-bottom:0.5rem; font-weight:600; }
+.skill-bar {
+  width:100%; height:12px; background:#ffffff; border-radius:6px; overflow:hidden; box-shadow:0 1px 3px rgba(0,0,0,0.1);
+}
+.skill-fill {
+  width:0%; height:100%; background:#0FAAFF; border-radius:6px; transition: width 1.5s ease-in-out;
+}
 
   .projects { display:grid; grid-template-columns:repeat(auto-fit, minmax(250px, 1fr)); gap:1.5rem; }
 
@@ -107,31 +113,39 @@
   <p>SAP Development Lead with 6+ years of experience specializing in ABAP, Fiori, and S/4HANA development. Strong background in full-cycle SAP implementations, performance optimization, and modernizing legacy systems. Adept at leading agile teams, fostering collaboration, and delivering innovative digital solutions that enhance business efficiency and user experience.</p>
 </section>
 
-<section id="skills">
+  <section id="skills">
   <h2>Skills</h2>
   <div class="skills">
-    <div class="skill">SAP Build Developer</div>
-    <div class="skill">SAP BTP</div>
-    <div class="skill">SAP Fiori</div>
-    <div class="skill">SAP ABAP/Core Development</div>
-    <div class="skill">SAP Architecture</div>
-    <div class="skill">Project Leadership</div>
+    <div class="skill">
+      <p>SAP Build Developer</p>
+      <div class="skill-bar"><div class="skill-fill" data-fill="90"></div></div>
+    </div>
+    <div class="skill">
+      <p>SAP BTP</p>
+      <div class="skill-bar"><div class="skill-fill" data-fill="85"></div></div>
+    </div>
+    <div class="skill">
+      <p>SAP Fiori</p>
+      <div class="skill-bar"><div class="skill-fill" data-fill="80"></div></div>
+    </div>
+    <div class="skill">
+      <p>SAP ABAP/Core Development</p>
+      <div class="skill-bar"><div class="skill-fill" data-fill="75"></div></div>
+    </div>
+    <div class="skill">
+      <p>SAP Architecture</p>
+      <div class="skill-bar"><div class="skill-fill" data-fill="70"></div></div>
+    </div>
+    <div class="skill">
+      <p>Project Leadership</p>
+      <div class="skill-bar"><div class="skill-fill" data-fill="65"></div></div>
+    </div>
   </div>
 </section>
 
 <section id="projects">
   <h2>Projects</h2>
   <div class="projects" id="github-projects">
-    <!-- <div class="project">
-      <h3>Project 1</h3>
-      <p>Short description of a notable SAP/Fiori project.</p>
-      <a href="#">View Code</a>
-    </div>
-    <div class="project">
-      <h3>Project 2</h3>
-      <p>Short description of another project.</p>
-      <a href="#">View Code</a>
-    </div> -->
   </div>
 </section>
 
@@ -166,7 +180,7 @@
     document.body.classList.toggle('dark');
   }
 
-  const username = "gtiganourgias"; // <-- replace with your GitHub username
+const username = "gtiganourgias"; // <-- replace with your GitHub username
 const repoContainer = document.getElementById('github-projects');
 const colors = ['project-color-0','project-color-1','project-color-2','project-color-3','project-color-4','project-color-5'];
 
@@ -194,6 +208,20 @@ fetch(`https://api.github.com/users/${username}/repos?sort=updated&per_page=6`)
     repoContainer.innerHTML = `<p>Failed to load projects. Please check your GitHub username.</p>`;
     console.error(err);
   });
+
+  const skillFills = document.querySelectorAll('.skill-fill');
+
+const skillObserver = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if(entry.isIntersecting){
+      const fill = entry.target;
+      fill.style.width = fill.dataset.fill + '%';
+      skillObserver.unobserve(fill);
+    }
+  });
+}, { threshold: 0.5 });
+
+skillFills.forEach(fill => skillObserver.observe(fill));
 </script>
   
 </body>
