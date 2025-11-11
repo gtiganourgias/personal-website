@@ -1,470 +1,183 @@
 <!doctype html>
 <html lang="en">
 <head>
-<meta charset="utf-8" />
-<meta name="viewport" content="width=device-width,initial-scale=1" />
-<title>George Tiganourgias — SAP Fiori Architect</title>
-<meta name="description" content="George Tiganourgias — SAP Development Lead & Fiori Architect. Portfolio, projects and contact." />
-<!-- Open Graph -->
-<meta property="og:title" content="George Tiganourgias — SAP Fiori Architect" />
-<meta property="og:description" content="SAP Development Lead & Fiori Architect — portfolio and projects." />
-<meta property="og:type" content="website" />
-<meta property="og:image" content="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='1200' height='630'%3E%3Crect width='100%25' height='100%25' fill='%230FAAFF'/%3E%3Ctext x='50%25' y='50%25' dominant-baseline='middle' text-anchor='middle' font-family='Inter,Arial' font-size='46' fill='white'%3EGeorge Tiganourgias%3C/text%3E%3C/svg%3E" />
-<meta name="theme-color" content="#0FAAFF" />
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>George Tiganourgias — Portfolio</title>
+  <meta name="description" content="Portfolio website for George Tiganourgias — SAP Development Lead" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root{
+      --bg:#141d33; --card:#18223a; --muted:#b0bccf; --accent:#8b5cf6; --glass: rgba(255,255,255,0.07);
+      --maxw:1100px; --radius:14px;
+    }
+    *{box-sizing:border-box;scroll-behavior:smooth}
+    html,body{height:100%;margin:0;font-family:Inter,system-ui,Segoe UI,Roboto,"Helvetica Neue",Arial;background:linear-gradient(180deg,#101c36 0%, #0f213f 60%);color:#f2f6fc}
+    a{color:inherit;text-decoration:none}
+    .wrap{max-width:var(--maxw);margin:40px auto;padding:28px}
 
-<!-- Inline SAP-like favicon (data URI SVG) -->
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 48 48'%3E%3Crect width='100%25' height='100%25' fill='%230FAAFF' rx='8'/%3E%3Ccircle cx='14' cy='24' r='6' fill='%23fff'/%3E%3Crect x='24' y='18' width='10' height='12' rx='2' fill='%23fff'/%3E%3C/svg%3E">
+    /* header */
+    .header{display:flex;align-items:center;justify-content:space-between;gap:20px}
+    .brand{display:flex;gap:16px;align-items:center}
+    .logo{width:56px;height:56px;border-radius:12px;background:linear-gradient(135deg,var(--accent),#06b6d4);display:flex;align-items:center;justify-content:center;font-weight:700;color:#fff}
+    .nav{display:flex;gap:16px;align-items:center}
+    .btn{padding:10px 14px;border-radius:10px;background:var(--glass);border:1px solid rgba(255,255,255,0.08);font-weight:600;transition:background 0.2s}
+    .btn:hover{background:rgba(255,255,255,0.1)}
 
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
-<style>
-  /* -----------------------
-     Design tokens (SAP-inspired)
-     ----------------------- */
-  :root{
-    --sap-blue:#0FAAFF;
-    --sap-dark:#0A75C2;
-    --sap-light:#E6F4FF;
-    --sap-orange:#FF8C00;
-    --bg:#F4F8FB;
-    --card:#ffffff;
-    --muted:#667085;
-    --glass: rgba(255,255,255,0.65);
-    --radius:14px;
-    --gap:1.25rem;
-    --max-width:1100px;
-    --motion-fast:180ms;
-    --motion-medium:300ms;
-  }
-  @media (prefers-reduced-motion: reduce){
-    :root{ --motion-fast:1ms; --motion-medium:1ms; }
-  }
+    /* hero */
+    .hero{display:grid;grid-template-columns:1fr 420px;gap:32px;margin-top:28px}
+    .card{background:linear-gradient(180deg, rgba(255,255,255,0.05), rgba(255,255,255,0.02));padding:28px;border-radius:var(--radius);backdrop-filter: blur(6px);border:1px solid rgba(255,255,255,0.08)}
+    .headline{font-size:28px;font-weight:700;line-height:1.05;margin:0}
+    .sub{color:var(--muted);margin-top:10px}
+    .skills{display:flex;flex-wrap:wrap;gap:8px;margin-top:16px}
+    .chip{padding:8px 12px;border-radius:999px;background:rgba(255,255,255,0.07);border:1px solid rgba(255,255,255,0.08);font-weight:600}
 
-  /* -----------------------
-     Page basics
-     ----------------------- */
-  *{box-sizing:border-box}
-  html,body{height:100%}
-  body{
-    margin:0;
-    font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,"Helvetica Neue",Arial;
-    -webkit-font-smoothing:antialiased;
-    background: linear-gradient(180deg,var(--bg), #fff 200px);
-    color:#0b1220;
-    line-height:1.5;
-    -webkit-tap-highlight-color:transparent;
-  }
-  a{color:var(--sap-dark); text-decoration:none}
-  a:focus{outline:3px solid rgba(15,170,255,0.18); outline-offset:3px; border-radius:6px}
+    /* right column */
+    .profile{display:flex;flex-direction:column;gap:16px;align-items:center;text-align:center}
+    .avatar{width:160px;height:160px;border-radius:28px;background:linear-gradient(180deg,#1d3052,#0d1e38);display:flex;align-items:center;justify-content:center;font-size:42px;color:var(--accent);font-weight:800;border:1px solid rgba(255,255,255,0.08)}
+    .statgrid{display:flex;gap:12px;justify-content:center}
+    .stat{padding:12px 14px;border-radius:12px;background:rgba(255,255,255,0.06)}
+    .contact{display:flex;gap:10px;flex-wrap:wrap;justify-content:center}
+    .social{display:inline-flex;align-items:center;gap:8px;padding:10px 12px;border-radius:10px;background:var(--glass);border:1px solid rgba(255,255,255,0.08)}
 
-  .container{max-width:var(--max-width); margin:0 auto; padding:2rem;}
+    /* sections */
+    section{margin-top:28px}
+    .grid-2{display:grid;grid-template-columns:1fr 1fr;gap:20px}
+    .projects{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:16px}
+    .proj{padding:16px;border-radius:12px;background:linear-gradient(180deg, rgba(255,255,255,0.04), rgba(255,255,255,0.02));border:1px solid rgba(255,255,255,0.08)}
 
-  /* -----------------------
-     Header / Nav
-     ----------------------- */
-  header{
-    position:sticky; top:12px; z-index:60;
-    display:flex; align-items:center; justify-content:space-between;
-    margin:0 auto; max-width:var(--max-width); padding:0 1rem;
-  }
-  .nav-inner{
-    width:100%; display:flex; gap:1rem; align-items:center; justify-content:space-between;
-    background:var(--glass); padding:0.5rem 1rem; border-radius:12px; backdrop-filter: blur(6px);
-    box-shadow:0 6px 18px rgba(11,18,32,0.06);
-    border:1px solid rgba(10,117,194,0.06);
-  }
-  .brand{display:flex; gap:0.75rem; align-items:center}
-  .brand strong{font-weight:800; color:var(--sap-dark)}
-  nav a{font-weight:600; color:var(--sap-dark); padding:0.4rem 0.6rem; border-radius:8px; font-size:0.95rem}
-  nav a:hover{background: rgba(15,170,255,0.06); color:var(--sap-blue);}
-  .actions{display:flex; gap:0.5rem; align-items:center}
-  .btn{
-    display:inline-flex; align-items:center; gap:0.5rem;
-    background:var(--sap-blue); color:white; border:none; padding:0.5rem 0.9rem;
-    border-radius:10px; font-weight:700; cursor:pointer; font-size:0.95rem;
-    box-shadow:0 6px 18px rgba(15,170,255,0.12);
-    transition:transform var(--motion-fast) ease, box-shadow var(--motion-fast);
-  }
-  .btn.secondary{ background:transparent; color:var(--sap-dark); border:1px solid rgba(10,117,194,0.09); box-shadow:none; }
-  .btn:active{transform:translateY(1px)}
-  .icon { width:18px; height:18px; display:inline-block }
+    footer{margin-top:40px;text-align:center;color:var(--muted);font-size:14px;padding-bottom:40px}
 
-  /* -----------------------
-     Hero (split layout)
-     ----------------------- */
-  .hero{
-    display:grid; grid-template-columns: 1fr 420px; gap:2rem; align-items:center;
-    margin:2.2rem auto; max-width:var(--max-width); padding:2.2rem;
-  }
-  .hero-left{
-    padding:2rem; border-radius:18px; background:linear-gradient(180deg, rgba(255,255,255,0.8), rgba(255,255,255,0.6));
-    box-shadow: 0 24px 60px rgba(10,20,40,0.06); border:1px solid rgba(10,117,194,0.04);
-  }
-  h1{font-size:2.1rem; margin:0 0 0.5rem 0; letter-spacing:-0.02em}
-  .eyebrow{display:inline-block; background:rgba(15,170,255,0.08); color:var(--sap-dark); padding:6px 10px; border-radius:999px; font-weight:700; margin-bottom:0.8rem; font-size:0.85rem}
-  .hero p.lead{font-size:1.02rem; color: #213041; margin:0 0 1.25rem; max-width:70ch}
-  .cta-row{display:flex; gap:0.75rem; align-items:center}
-  .cta-row .btn{font-size:0.95rem}
-  .mini{
-    display:flex; gap:0.9rem; margin-top:1.5rem; flex-wrap:wrap;
-  }
-  .stat{
-    background:linear-gradient(180deg,#fff, #fbfdff);
-    padding:0.75rem 1rem; border-radius:12px; border:1px solid rgba(10,117,194,0.04);
-    min-width:120px; text-align:center;
-  }
-  .stat b{display:block; font-size:1.05rem; color:var(--sap-dark); font-weight:800}
-  .stat span{font-size:0.9rem; color:var(--muted)}
+    /* responsive */
+    @media (max-width:980px){
+      .hero{grid-template-columns:1fr}
+      .grid-2{grid-template-columns:1fr}
+      .header{flex-direction:column;align-items:flex-start}
+      .wrap{margin:20px auto;padding:18px}
+    }
 
-  .hero-right{
-    display:flex; align-items:center; justify-content:center;
-    background: linear-gradient(135deg, var(--sap-blue), var(--sap-dark));
-    border-radius:18px; color:white; padding:1.6rem; box-shadow: 0 20px 50px rgba(10,117,194,0.18);
-    min-height:240px;
-  }
-  .card-profile{
-    width:100%; max-width:360px; text-align:left;
-  }
-  .avatar{
-    width:86px; height:86px; border-radius:14px; overflow:hidden; display:inline-block; border:4px solid rgba(255,255,255,0.15)
-  }
-  .title{font-size:1.15rem; font-weight:700; margin-top:0.6rem}
-  .subtitle{opacity:0.95; font-size:0.95rem; margin-top:0.35rem; color:rgba(255,255,255,0.92)}
-
-  /* -----------------------
-     Sections style
-     -----------------------
-  section.block{margin:2rem auto; padding:2rem; border-radius:14px; background:var(--card); box-shadow:0 10px 30px rgba(11,18,32,0.04); border:1px solid rgba(10,117,194,0.03)}
-  section.block h2{margin-top:0; color:var(--sap-dark)} 
-  */
-  
-  /* Sections */
-section {
-  width: 100%;
-  margin: 4rem auto;
-  padding: 4rem 8vw; /* more spacing for large screens */
-  border-radius: 0;
-  background: rgba(255,255,255,0.6);
-  backdrop-filter: blur(10px);
-  box-shadow: 0 8px 25px rgba(0,0,0,0.08);
-}
-
-section h2 {
-  text-align: center;
-  font-size: 2rem;
-  margin-bottom: 2rem;
-  color: var(--sap-dark);
-}
-
-/* Make About text narrower for readability */
-#about p {
-  max-width: 800px;
-  margin: auto;
-  line-height: 1.6;
-}
-
-  /* Skills */
-  .skills-grid{display:grid; grid-template-columns:repeat(auto-fit, minmax(220px, 1fr)); gap:1rem}
-  .skill-card{
-    padding:1rem; border-radius:12px; background:linear-gradient(180deg,#fff,#fbfdff); border:1px solid rgba(10,117,194,0.03);
-    transition:transform var(--motion-fast) ease, box-shadow var(--motion-fast) ease;
-  }
-  .skill-card:focus-within, .skill-card:hover{ transform:translateY(-6px); box-shadow:0 12px 30px rgba(10,20,40,0.06) }
-
-  .skill-title{display:flex; justify-content:space-between; gap:1rem; align-items:center; font-weight:700; color:#0b1220}
-  .progress{height:12px; background:#f2f7fb; border-radius:999px; margin-top:0.65rem; overflow:hidden}
-  .progress > i{display:block; height:100%; width:0%; background:linear-gradient(90deg,var(--sap-blue),var(--sap-dark),var(--sap-orange)); transition:width 1.6s cubic-bezier(.2,.9,.2,1)}
-
-  /* Projects */
-  .projects-grid{display:grid; grid-template-columns:repeat(auto-fit,minmax(260px,1fr)); gap:1rem}
-  .project{
-    padding:1rem; border-radius:12px; background:linear-gradient(180deg,#fff,#fbfdff);
-    border-left:4px solid var(--sap-blue); min-height:130px; display:flex; flex-direction:column; gap:0.6rem; transition:transform var(--motion-fast) ease, border-color var(--motion-fast);
-  }
-  .project:hover{ transform:translateY(-6px); border-left-color:var(--sap-orange) }
-  .meta{display:flex; gap:0.6rem; align-items:center; color:var(--muted); font-size:0.9rem}
-  .badges{margin-left:auto; display:flex; gap:0.4rem; align-items:center}
-  .badge{background:rgba(10,117,194,0.06); color:var(--sap-dark); padding:4px 8px; border-radius:999px; font-weight:700; font-size:0.8rem}
-
-  /* loader */
-  .skeleton{height:12px; background:linear-gradient(90deg,#edf2f7, #f7fafc, #edf2f7); background-size:200% 100%; animation:skeleton 1.2s linear infinite}
-  @keyframes skeleton{ 0%{background-position:200% 0} 100%{background-position:-200% 0} }
-
-  /* Contact */
-  .contact-grid{display:grid; grid-template-columns:1fr 320px; gap:1.5rem; align-items:start}
-  .contact-card{padding:1rem; border-radius:12px; background:linear-gradient(180deg,#fff,#fbfdff); border:1px solid rgba(10,117,194,0.03)}
-
-  /* Footer */
-  footer{ text-align:center; color:var(--muted); padding:2.4rem 1rem; font-size:0.95rem }
-
-  /* Responsive */
-  @media (max-width:980px){
-    .hero{grid-template-columns:1fr; padding:1rem}
-    .hero-right{order:-1; margin-bottom:1rem}
-    .contact-grid{grid-template-columns:1fr}
-  }
-</style>
+    .kbd{background:rgba(255,255,255,0.07);padding:6px 8px;border-radius:8px;border:1px solid rgba(255,255,255,0.08);font-weight:700}
+  </style>
 </head>
 <body>
-
-<header>
-  <div class="nav-inner" role="navigation" aria-label="Primary">
-    <div class="brand">
-      <svg width="34" height="34" viewBox="0 0 48 48" aria-hidden focusable="false"><rect width="48" height="48" rx="10" fill="#0FAAFF"/><path d="M14 28a6 6 0 1 1 0-12 6 6 0 0 1 0 12zM26 18h10v12H26z" fill="#fff"/></svg>
-      <strong>George Tiganourgias</strong>
-    </div>
-
-    <nav aria-label="Main navigation">
-      <a href="#about">About</a>
-      <a href="#skills">Skills</a>
-      <a href="#projects">Projects</a>
-      <a href="#contact">Contact</a>
-    </nav>
-
-    <div class="actions">
-      <a class="btn secondary" href="resume.pdf" download aria-label="Download resume (PDF)">Download CV</a>
-      <button class="btn" id="theme-toggle" title="Toggle theme" aria-pressed="false">🌗</button>
-    </div>
-  </div>
-</header>
-
-<main>
-
-  <!-- HERO -->
-  <section class="hero" aria-labelledby="hero-title">
-    <div class="hero-left">
-      <span class="eyebrow">SAP Fiori Architect • Development Lead</span>
-      <h1 id="hero-title">George Tiganourgias</h1>
-      <p class="lead">I design scalable SAP solutions and delightful Fiori experiences — bridging strong engineering with elegant UX for enterprise applications.</p>
-
-      <div class="cta-row">
-        <a class="btn" href="#projects">Explore my work</a>
-        <a class="btn secondary" href="mailto:george@example.com">Contact me</a>
-      </div>
-
-      <div class="mini" aria-hidden>
-        <div class="stat"><b>8+</b><span>Years experience</span></div>
-        <div class="stat"><b>Navigo</b><span>Consulting — Greece</span></div>
-        <div class="stat"><b>Fiori & ABAP</b><span>Leader</span></div>
-      </div>
-    </div>
-
-    <div class="hero-right" aria-hidden>
-      <div class="card-profile">
-        <div style="display:flex; gap:1rem; align-items:center">
-          <div class="avatar" role="img" aria-label="Profile photo">
-            <!-- placeholder gradient avatar, replace with your image -->
-            <svg width="86" height="86" viewBox="0 0 120 120"><defs><linearGradient id="g" x1="0" x2="1"><stop offset="0" stop-color="#fff"/><stop offset="1" stop-color="#fff" stop-opacity="0.2"/></linearGradient></defs><rect width="120" height="120" rx="18" fill="rgba(255,255,255,0.06)"/><circle cx="60" cy="44" r="24" fill="rgba(255,255,255,0.18)"/><rect x="30" y="74" width="60" height="12" rx="6" fill="rgba(255,255,255,0.14)"/></svg>
-          </div>
-          <div>
-            <div class="title">George Tiganourgias</div>
-            <div class="subtitle">SAP Development Lead · Fiori Architect</div>
-          </div>
-        </div>
-
-        <p style="margin-top:1.2rem; color:rgba(255,255,255,0.95)">
-          I focus on modern Fiori UX, scalable ABAP design, and system architecture. I lead cross-functional teams to deliver quality enterprise software.
-        </p>
-
-        <div style="display:flex; gap:0.6rem; margin-top:1.4rem;">
-          <a href="https://github.com/yourusername" class="btn secondary" target="_blank" rel="noopener">GitHub</a>
-          <a href="https://www.linkedin.com/in/georgetiganourgias/" class="btn secondary" target="_blank" rel="noopener">LinkedIn</a>
+  <div class="wrap">
+    <header class="header">
+      <div class="brand">
+        <div class="logo">GT</div>
+        <div>
+          <div style="font-weight:800">George Tiganourgias</div>
+          <div style="font-size:13px;color:var(--muted);margin-top:2px">SAP Development Lead</div>
         </div>
       </div>
-    </div>
-  </section>
+      <nav class="nav">
+        <a class="btn" href="#about">About</a>
+        <a class="btn" href="#projects">Projects</a>
+        <a class="btn" href="#contact">Contact</a>
+        <a class="btn" href="https://www.linkedin.com/in/gtiganourgias/" target="_blank" rel="noopener" aria-label="LinkedIn">LinkedIn</a>
+      </nav>
+    </header>
 
-  <!-- ABOUT -->
-  <section id="about" class="block" aria-labelledby="about-h2">
-    <h2 id="about-h2">About</h2>
-    <div style="max-width:80ch; margin:auto; color: #25323f">
-      <p>I’m an SAP Development Lead & Fiori Architect based in Greece. I design and implement E2E SAP solutions with a focus on user-centered Fiori applications, efficient ABAP components, and robust system architecture. I enjoy improving performance, developer experience, and making complex systems simple for end-users.</p>
-    </div>
-  </section>
+    <main class="hero">
+      <div class="card">
+        <h1 class="headline">Hi — I’m George Tiganourgias. I focus on modern Fiori UX, scalable ABAP design, and system architecture. I lead cross-functional teams to deliver quality enterprise software.</h1>
+        <p class="sub">Engineer with experience in building scalable web apps, CI/CD, and infrastructure automation. I enjoy bridging product goals and engineering execution.</p>
 
-  <!-- SKILLS -->
-  <section id="skills" class="block" aria-labelledby="skills-h2">
-    <h2 id="skills-h2">Skills</h2>
-    <div class="skills-grid">
-      <div class="skill-card" tabindex="0">
-        <div class="skill-title"><span>SAP Fiori Development</span><span class="percent" aria-hidden>90%</span></div>
-        <div class="progress" aria-hidden><i class="bar" data-fill="90"></i></div>
-      </div>
+        <div class="skills" aria-hidden>
+          <div class="chip">SAP Build Developer</div>
+          <div class="chip">SAP BTP</div>
+          <div class="chip">SAP Fiori</div>
+          <div class="chip">SAP ABAP/Core Development</div>
+          <div class="chip">SAP Architecture</div>
+          <div class="chip">Project Leadership</div>
+        </div>
 
-      <div class="skill-card" tabindex="0">
-        <div class="skill-title"><span>SAP ABAP / Core Development</span><span class="percent" aria-hidden>85%</span></div>
-        <div class="progress" aria-hidden><i class="bar" data-fill="85"></i></div>
-      </div>
+        <section id="about">
+          <h3 style="margin-top:22px">About</h3>
+          <p class="sub">SAP Development Lead with 6+ years of experience specializing in ABAP, Fiori, and S/4HANA development. Strong background in full-cycle SAP implementations, performance optimization, and modernizing legacy systems. Adept at leading agile teams, fostering collaboration, and delivering innovative digital solutions that enhance business efficiency and user experience.</p>
 
-      <div class="skill-card" tabindex="0">
-        <div class="skill-title"><span>System Architecture</span><span class="percent" aria-hidden>80%</span></div>
-        <div class="progress" aria-hidden><i class="bar" data-fill="80"></i></div>
-      </div>
-
-      <div class="skill-card" tabindex="0">
-        <div class="skill-title"><span>Project Leadership</span><span class="percent" aria-hidden>75%</span></div>
-        <div class="progress" aria-hidden><i class="bar" data-fill="75"></i></div>
-      </div>
-    </div>
-  </section>
-
-  <!-- PROJECTS -->
-  <section id="projects" class="block" aria-labelledby="projects-h2">
-    <h2 id="projects-h2">Latest GitHub Projects</h2>
-
-    <!-- skeleton while loading -->
-    <div class="projects-grid" id="github-projects" aria-live="polite" aria-busy="true">
-      <div class="project"><div class="skeleton" style="height:16px; width:40%"></div><div class="skeleton" style="height:12px; width:80%; margin-top:10px"></div></div>
-      <div class="project"><div class="skeleton" style="height:16px; width:40%"></div><div class="skeleton" style="height:12px; width:80%; margin-top:10px"></div></div>
-      <div class="project"><div class="skeleton" style="height:16px; width:40%"></div><div class="skeleton" style="height:12px; width:80%; margin-top:10px"></div></div>
-    </div>
-  </section>
-
-  <!-- CONTACT -->
-  <section id="contact" class="block" aria-labelledby="contact-h2">
-    <h2 id="contact-h2">Contact</h2>
-    <div class="contact-grid">
-      <div style="color:#14202b">
-        <p>If you'd like to work together or learn more about my projects, feel free to reach out.</p>
-        <p><strong>Email</strong><br><a href="mailto:george@example.com">george@example.com</a></p>
-        <p><strong>Location</strong><br>Greece</p>
-      </div>
-      <div class="contact-card">
-        <strong>Let's connect</strong>
-        <p style="margin-top:0.5rem; color:var(--muted)">Prefer quick contact? Send a short note and I'll get back.</p>
-        <form id="contact-form" onsubmit="return contactSubmit(event)">
-          <div style="display:flex; flex-direction:column; gap:0.6rem; margin-top:0.8rem">
-            <input name="name" placeholder="Your name" required style="padding:10px;border-radius:8px;border:1px solid rgba(10,117,194,0.06)">
-            <input name="email" type="email" placeholder="Email" required style="padding:10px;border-radius:8px;border:1px solid rgba(10,117,194,0.06)">
-            <textarea name="message" rows="4" placeholder="Short message" required style="padding:10px;border-radius:8px;border:1px solid rgba(10,117,194,0.06)"></textarea>
-            <div style="display:flex; gap:0.5rem; justify-content:flex-end">
-              <button class="btn" type="submit">Send</button>
+          <div class="grid-2" style="margin-top:14px">
+            <div class="card">
+              <h4 style="margin:0 0 8px 0">Experience highlights</h4>
+              <ul style="margin:0;padding-left:18px;color:var(--muted)">
+                <li>Delivered production web apps with strong observability and automated deployments.</li>
+                <li>Designed CI pipelines, Dockerized services, and improved release velocity.</li>
+              </ul>
+            </div>
+            <div class="card">
+              <h4 style="margin:0 0 8px 0">How I work</h4>
+              <p style="margin:0;color:var(--muted)">Collaborative, data-informed, and customer-focused. I prefer small iterations, code review culture, and clear documentation.</p>
             </div>
           </div>
-        </form>
-        <p id="contact-note" style="margin-top:0.6rem; font-size:0.9rem; color:var(--muted)"></p>
+        </section>
       </div>
-    </div>
-  </section>
 
-</main>
+      <aside class="profile card">
+        <div class="avatar">GT</div>
+        <div style="font-weight:700">George Tiganourgias</div>
+        <div style="color:var(--muted);font-size:14px">SAP Development Lead</div>
 
-<footer>
-  © <span id="year"></span> George Tiganourgias · Built with SAP-inspired UI • <a href="https://github.com/yourusername" target="_blank" rel="noopener">GitHub</a>
-</footer>
+        <div class="statgrid">
+          <div class="stat"><div style="font-weight:800">6+</div><div style="font-size:12px;color:var(--muted)">Years</div></div>
+          <div class="stat"><div style="font-weight:800">30+</div><div style="font-size:12px;color:var(--muted)">Projects</div></div>
+        </div>
 
-<script>
-/* -----------------------
-   Small helpers
-   ----------------------- */
-document.getElementById('year').textContent = new Date().getFullYear();
+        <div class="contact">
+          <a class="social" href="mailto:g.tiganourgias@gmail.com">Email</a>
+          <a class="social" href="https://github.com/gtiganourgias" target="_blank" rel="noopener">GitHub</a>
+          <a class="social" href="https://www.linkedin.com/in/gtiganourgias/" target="_blank" rel="noopener">LinkedIn</a>
+        </div>
 
-/* Theme toggle */
-const themeBtn = document.getElementById('theme-toggle');
-themeBtn.addEventListener('click', () => {
-  const isDark = document.body.classList.toggle('dark');
-  themeBtn.setAttribute('aria-pressed', String(isDark));
-});
+        <div style="margin-top:10px;color:var(--muted);font-size:13px">SAP Development Lead</div>
+      </aside>
+    </main>
 
-/* Skills animation: observe and animate bar width + percent */
-const bars = document.querySelectorAll('.bar');
-const obs = new IntersectionObserver((entries, o) => {
-  entries.forEach(entry => {
-    if(entry.isIntersecting){
-      const el = entry.target;
-      const target = el.dataset.fill || 80;
-      // fill bar
-      el.style.width = target + '%';
-      // add accessible percent
-      const percentLabel = el.closest('.skill-card').querySelector('.percent');
-      if(percentLabel){
-        let c = 0;
-        const t = parseInt(target,10);
-        const timer = setInterval(() => {
-          c++; percentLabel.textContent = c + '%';
-          if(c >= t) clearInterval(timer);
-        }, 12);
+    <section id="projects">
+      <h3>Selected Projects</h3>
+      <div class="projects" id="projectList">
+        <p class="sub">Loading projects from GitHub...</p>
+      </div>
+    </section>
+
+    <section id="contact" class="card">
+      <h3>Contact</h3>
+      <p class="sub">Interested in working together or need a technical consult? Send a short message — I reply promptly.</p>
+      <form action="mailto:g.tiganourgias@gmail.com" method="post" enctype="text/plain" style="display:flex;flex-direction:column;gap:10px;max-width:640px">
+        <input name="name" placeholder="Your name" style="padding:10px;border-radius:10px;border:1px solid rgba(255,255,255,0.08);background:transparent;color:inherit" />
+        <input name="email" placeholder="Your email" style="padding:10px;border-radius:10px;border:1px solid rgba(255,255,255,0.08);background:transparent;color:inherit" />
+        <textarea name="message" placeholder="Message" rows="4" style="padding:10px;border-radius:10px;border:1px solid rgba(255,255,255,0.08);background:transparent;color:inherit"></textarea>
+        <div style="display:flex;gap:10px"><button type="submit" class="btn">Send</button><button type="reset" class="btn">Reset</button></div>
+      </form>
+    </section>
+
+    <footer>
+      © <span id="year"></span> George Tiganourgias — Made with ❤️.
+    </footer>
+  </div>
+
+  <script>
+    // Smooth scroll behavior is handled via CSS scroll-behavior
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    // Dynamically fetch GitHub repositories
+    async function loadRepos(){
+      try{
+        const res = await fetch('https://api.github.com/users/gtiganourgias/repos?sort=updated&per_page=6');
+        const data = await res.json();
+        const list = document.getElementById('projectList');
+        list.innerHTML = '';
+        data.forEach(repo => {
+          const el = document.createElement('article');
+          el.className = 'proj';
+          el.innerHTML = `<h4 style="margin:0 0 8px 0">${repo.name}</h4><p class="sub">${repo.description || 'No description provided.'}</p><div style="margin-top:8px"><a class="kbd" href="${repo.html_url}" target="_blank">View on GitHub</a></div>`;
+          list.appendChild(el);
+        });
+      }catch(e){
+        document.getElementById('projectList').innerHTML = '<p class="sub">Failed to load projects.</p>';
       }
-      o.unobserve(el);
     }
-  });
-}, {threshold: 0.45});
-bars.forEach(b => obs.observe(b));
-
-/* -----------------------
-   GitHub integration (projects)
-   - Replace yourusername with your GitHub handle
-   - Fetches most recently updated public repos (6)
-   ----------------------- */
-(async function loadRepos(){
-  const username = 'yourusername'; // <-- replace
-  const container = document.getElementById('github-projects');
-  try{
-    const res = await fetch(`https://api.github.com/users/${username}/repos?sort=updated&per_page=6`);
-    if(!res.ok) throw new Error('GitHub API error');
-    const repos = await res.json();
-
-    container.innerHTML = ''; // clear skeleton
-
-    // for each repo: try fetch languages (non-blocking)
-    for(const r of repos){
-      const card = document.createElement('article');
-      card.className = 'project';
-      // basic content
-      card.innerHTML = `
-        <div style="display:flex; align-items:center; gap:0.6rem;">
-          <h3 style="margin:0; font-size:1rem">${r.name}</h3>
-          <div class="badges"><span class="badge">${r.private ? 'private' : 'public'}</span></div>
-        </div>
-        <p style="margin:0.35rem 0 0.5rem 0; color:var(--muted); font-size:0.95rem">${(r.description || '').slice(0,140) || 'No description'}</p>
-        <div style="display:flex; align-items:center; gap:0.8rem; margin-top:auto; font-size:0.9rem; color:var(--muted)">
-          <div class="meta">⭐ ${r.stargazers_count}</div>
-          <div class="meta">🍴 ${r.forks_count}</div>
-          <div class="meta" style="margin-left:auto"><a href="${r.html_url}" target="_blank" rel="noopener">View</a></div>
-        </div>
-      `;
-      container.appendChild(card);
-
-      // fetch languages (best-effort)
-      fetch(r.languages_url).then(lres => lres.json()).then(langObj => {
-        const langs = Object.keys(langObj);
-        if(langs.length){
-          const badge = document.createElement('span');
-          badge.className='badge';
-          badge.textContent = langs[0];
-          card.querySelector('.badges').appendChild(badge);
-        }
-      }).catch(()=>{ /* ignore language errors silently */ });
-      // stagger reveal
-      setTimeout(()=> card.style.transform = 'translateY(0)', 80);
-    }
-    container.setAttribute('aria-busy','false');
-  }catch(e){
-    container.innerHTML = '<div style="color:var(--muted)">Failed to load GitHub projects. Check your username or rate limits.</div>';
-    console.error(e);
-  }
-})();
-
-/* Contact form (no backend) - create mailto prefilling for quick usage */
-function contactSubmit(e){
-  e.preventDefault();
-  const f = e.target;
-  const name = encodeURIComponent(f.name.value.trim());
-  const email = encodeURIComponent(f.email.value.trim());
-  const msg = encodeURIComponent(f.message.value.trim());
-  const subject = encodeURIComponent('Portfolio contact from ' + (f.name.value || 'Website visitor'));
-  const body = encodeURIComponent(`Name: ${f.name.value}\nEmail: ${f.email.value}\n\n${f.message.value}`);
-  const mailto = `mailto:george@example.com?subject=${subject}&body=${body}`;
-  // fallback: open mailto so user can send from their client
-  window.location.href = mailto;
-  // show note
-  const note = document.getElementById('contact-note');
-  note.textContent = 'Your email client opened — please confirm and send the message. Alternatively email me directly.';
-  f.reset();
-  return false;
-}
-
-/* Accessibility: reduce motion respects already handled by CSS */
-</script>
+    loadRepos();
+  </script>
 </body>
 </html>
-
